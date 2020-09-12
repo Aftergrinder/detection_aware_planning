@@ -37,4 +37,17 @@ do
     $GOLINT "-set_exit_status" $FILE
     if [[ $? == 1 ]]; then
         printf "\t\033[31mgolint $FILE\033[0m \033[0;30m\033[41mFAILURE!\033[0m\n"
-        PASS=fa
+        PASS=false
+    else
+        printf "\t\033[32mgolint $FILE\033[0m \033[0;30m\033[42mpass\033[0m\n"
+    fi
+done
+
+if ! $PASS; then
+    printf "\033[0;30m\033[41mCOMMIT FAILED\033[0m\n"
+    exit 1
+else
+    printf "\033[0;30m\033[42mCOMMIT SUCCEEDED\033[0m\n"
+fi
+
+exit 0
