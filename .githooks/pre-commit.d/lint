@@ -28,4 +28,13 @@ fi
 
 PASS=true
 
-for FILE
+for FILE in $STAGED_GO_FILES
+do
+    # Run goimports on the staged file
+    $GOIMPORTS -w $FILE
+
+    # Run golint on the staged file and check the exit status
+    $GOLINT "-set_exit_status" $FILE
+    if [[ $? == 1 ]]; then
+        printf "\t\033[31mgolint $FILE\033[0m \033[0;30m\033[41mFAILURE!\033[0m\n"
+        PASS=fa
