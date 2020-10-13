@@ -52,4 +52,9 @@ address, posting via an official social media account, or acting as an appointed
 representative at an online or offline event. Representation of a project may be
 further defined and clarified by project maintainers.
 
-## Enf
+## Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported by contacting the project team at m+coc-report@42.am. All
+complaints will be reviewed and investigated and will result in a response that
+is deemed necessary and appropriate to the circumstan
