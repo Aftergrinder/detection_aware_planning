@@ -7,4 +7,15 @@ on:
 jobs:
   release:
     name: releaser
-   
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@master
+      -
+        name: Unshallow
+        run: git fetch --prune --unshallow
+      -
+        name: Run Semantic Release
+        id: semantic
+        uses: d
