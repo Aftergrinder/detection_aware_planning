@@ -35,4 +35,13 @@ jobs:
       #    path: ~/go/pkg/mod
       #    key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
       #    restore-keys: |
-     
+      #      ${{ runner.os }}-go-
+      #-
+      #  name: Run GoReleaser
+      #  if: steps.semantic.outputs.new-release-published == 'true'
+      #  uses: goreleaser/goreleaser-action@v2
+      #  with:
+      #    version: latest
+      #    args: release --rm-dist
+      #  env:
+      #   
