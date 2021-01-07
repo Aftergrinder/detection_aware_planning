@@ -6,4 +6,12 @@ You don't need to be a developer to help us improving SGTM; Feel free to start a
 
 ## Develop
 
-The project is probably(?) `go-g
+The project is probably(?) `go-gettable` with `go get moul.io/sgtm`; but we strongly suggest you to clone the repo somewhere and use the provided Makefile.
+
+```bash
+git clone https://github.com/sgtm-club/sgtm
+cd sgtm
+make run
+```
+
+You will probably need to provide some tokens in a `config.txt` file or by passing co
