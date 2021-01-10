@@ -14,4 +14,10 @@ cd sgtm
 make run
 ```
 
-You will probably need to provide some tokens in a `config.txt` file or by passing co
+You will probably need to provide some tokens in a `config.txt` file or by passing command-line arguments.
+
+Please, open an issue if you need help for setting-up your development environment.
+
+## Translate the app
+
+*TODO*
