@@ -1,0 +1,4 @@
+FROM            ipfs/go-ipfs as ipfs
+
+FROM            jpauwels/sonic-annotator:v1.5-ubuntu18.04
+RUN             apt update && apt -y install curl python ca-certificates && rm -rf /var/lib/a
