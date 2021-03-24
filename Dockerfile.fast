@@ -9,4 +9,9 @@ RUN             set -xe \
  &&             curl -k https://code.soundsoftware.ac.uk/attachments/download/2625/qm-vamp-plugins-1.8.0-linux64.tar.gz -o /tmp/qm-vamp.tar.gz \
  &&             mkdir -p /usr/lib/vamp/ \
  &&             cd /tmp \
- &&             for file in *-vamp.t*; do tar 
+ &&             for file in *-vamp.t*; do tar xf $file; done \
+ &&             mv *-plugins*/*.so /usr/lib/vamp \
+ &&             rm -rf *-plugins*/ *-vamp.t* \
+ &&             ls -la /usr/lib/vamp/*
+RUN             sonic-annotator --version && youtube-dl --version && sonic-annotator --list
+COPY            --from=ipfs /usr/local/bin/ipfs /
