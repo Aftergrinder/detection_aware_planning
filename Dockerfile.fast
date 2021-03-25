@@ -14,4 +14,8 @@ RUN             set -xe \
  &&             rm -rf *-plugins*/ *-vamp.t* \
  &&             ls -la /usr/lib/vamp/*
 RUN             sonic-annotator --version && youtube-dl --version && sonic-annotator --list
-COPY            --from=ipfs /usr/local/bin/ipfs /
+COPY            --from=ipfs /usr/local/bin/ipfs /bin/ipfs
+
+WORKDIR         /app
+ENTRYPOINT      ["/bin/sgtm"]
+COPY            ./sgtm-linux-static /bin/sgtm
