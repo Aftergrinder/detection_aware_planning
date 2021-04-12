@@ -93,3 +93,81 @@ dbshare:
 .PHONY: dbshare
 
 prod.dbdump:
+	ssh $(PROD_HOST) sqlite3 $(PROD_PATH)/sgtm.db .dump
+.PHONY: prod.dbdump
+
+prod.dbshell:
+	ssh -t $(PROD_HOST) sudo sqlite3 $(PROD_PATH)/sgtm.db
+.PHONY: prod.dbshell
+
+prod.accesslog:
+	#ssh $(PROD_HOST) sudo apt install grc
+	#ssh $(PROD_HOST) grc tail -n 1000 -f $(PROD_PATH)/logs/access.log
+	ssh $(PROD_HOST) tail -n 1000 -f $(PROD_PATH)/logs/access.log
+.PHONY: prod.accesslog
+
+dbshell:
+	sqlite3 /tmp/sgtm.db
+.PHONY: dbshell
+
+protos_src := $(wildcard ./api/*.proto)
+gen_src := $(protos_src) Makefile
+generate: gen.sum
+.PHONY: generate
+gen.sum: $(gen_src)
+	@shasum $(gen_src) | sort -k 2 > gen.sum.tmp
+	@diff -q gen.sum gen.sum.tmp || ( \
+	  set -xe; \
+	  make generate.protoc; \
+	  make go.fmt; \
+	  go mod tidy; \
+	  shasum $(gen_src) | sort -k 2 > gen.sum.tmp; \
+	  mv gen.sum.tmp gen.sum; \
+	)
+
+generate.protoc:
+	go mod download
+	@ uid=`id -u`; set -xe; \
+	docker run \
+	  --user="$$uid" \
+	  --volume="`go env GOPATH`/pkg/mod:/go/pkg/mod" \
+	  --volume="$(PWD):/go/src/moul.io/sgtm" \
+	  --workdir="/go/src/moul.io/sgtm" \
+	  --entrypoint="sh" \
+	  --rm \
+	  moul/sgtm-protoc:1 \
+	  -ec 'make generate.protoc_local'
+.PHONY: generate.protoc
+
+generate.protoc_local:
+	@set -e; for proto in $(protos_src); do ( set -e; \
+	  proto_dirs=./api:`go list -m -f {{.Dir}} github.com/alta/protopatch`:`go list -m -f {{.Dir}} google.golang.org/protobuf`:`go list -m -f {{.Dir}} github.com/grpc-ecosystem/grpc-gateway`/third_party/googleapis:/protobuf; \
+	  set -x; \
+	  protoc \
+	    -I $$proto_dirs \
+		--go_out=pkg/sgtmpb --go_opt=paths=source_relative \
+		--go-grpc_out=pkg/sgtmpb --go-grpc_opt=paths=source_relative \
+	    --grpc-gateway_out=logtostderr=true:"$(GOPATH)/src" \
+	    "$$proto"; \
+	  protoc \
+	    -I $$proto_dirs \
+	    --go-patch_out=plugin=go,paths=source_relative:pkg/sgtmpb \
+	    --go-patch_out=plugin=go-grpc,paths=source_relative:pkg/sgtmpb \
+	    "$$proto" \
+	); done
+	goimports -w ./pkg ./cmd ./internal
+.PHONY: generate.protoc_local
+
+gen.clean:
+	rm -f gen.sum $(wildcard */*/*.pb.go */*/*.pb.gw.go */*/*/*_grpc.pb.go)
+.PHONY: gen.clean
+
+clean: gen.clean packr.clean
+.PHONY: clean
+
+packr.clean:
+	rm -rf ./pkg/sgtm/packrd ./pkg/sgtm/sgtm-packr.go
+.PHONY: packr.clean
+
+regenerate: gen.clean generate
+.PHONY: regenerate
