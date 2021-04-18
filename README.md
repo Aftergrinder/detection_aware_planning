@@ -10,4 +10,9 @@
 <p align="center">
     <a href="https://sgtm.club"><img alt="sgtm.club" src="https://img.shields.io/badge/sgtm.club-2845a7?logo=internet-explorer&style=flat" /></a>
     <a href="https://moul.link/sgtm-discord"><img alt="discord" src="https://img.shields.io/badge/discord-gray?logo=discord" /></a>
-    <a href="https://github.com/sgtm-club"><img alt="github" src="https://img.shields.i
+    <a href="https://github.com/sgtm-club"><img alt="github" src="https://img.shields.io/badge/@sgtm-471961?logo=github" /></a>
+    <a href="https://twitter.com/sgtmclub"><img alt="twitter" src="https://img.shields.io/twitter/follow/sgtmclub?label=%40sgtmclub&style=flat&logo=twitter" /></a>
+</p>
+
+<p align="center">
+    <a href="https://pkg.go.dev/moul.io/sgtm/go
