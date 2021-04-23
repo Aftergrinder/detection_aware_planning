@@ -17,4 +17,5 @@
 <p align="center">
     <a href="https://pkg.go.dev/moul.io/sgtm/go?tab=subdirectories"><img alt="GoDoc" src="https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white" /></a>
     <a href="https://github.com/sgtm-club/sgtm/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/sgtm-club/sgtm" /></a>
-    <a href="https://www.co
+    <a href="https://www.codefactor.io/repository/github/sgtm-club/sgtm"><img src="https://www.codefactor.io/repository/github/sgtm-club/sgtm/badge" alt="CodeFactor" /></a>
+    <a href="https://github.com/sgtm-club/sgtm/blob/master/COPYRIGHT"><img src="https://img.shields.io/badge/license-Apache--2.0%20%2F%20MIT-%2397ca00.
