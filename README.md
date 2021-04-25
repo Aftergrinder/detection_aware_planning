@@ -21,4 +21,9 @@
     <a href="https://github.com/sgtm-club/sgtm/blob/master/COPYRIGHT"><img src="https://img.shields.io/badge/license-Apache--2.0%20%2F%20MIT-%2397ca00.svg" /></a>
     <a href="https://goreportcard.com/report/moul.io/sgtm"><img src="https://goreportcard.com/badge/moul.io/sgtm" /></a>
     <a href="https://golangci.com/r/github.com/sgtm-club/sgtm"><img src="https://golangci.com/badges/github.com/sgtm-club/sgtm.svg" /></a>
-  <!--<a title="Crowdin
+  <!--<a title="Crowdin" href="https://translate.sgtm.club"><img src="https://badges.crowdin.net/e/foobar/localized.svg"></a>-->
+</p>
+
+<p align="center">
+    <a href="https://github.com/sgtm-club/sgtm/actions?query=workflow%3ACI"><img src="https://github.com/sgtm-club/sgtm/workflows/CI/badge.svg" /></a>
+    <a href="https://github.c
