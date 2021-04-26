@@ -26,4 +26,8 @@
 
 <p align="center">
     <a href="https://github.com/sgtm-club/sgtm/actions?query=workflow%3ACI"><img src="https://github.com/sgtm-club/sgtm/workflows/CI/badge.svg" /></a>
-    <a href="https://github.c
+    <a href="https://github.com/sgtm-club/sgtm/actions?query=workflow%3ARelease"><img src="https://github.com/sgtm-club/sgtm/workflows/Release/badge.svg" /></a>
+</p>
+
+<p align="center"><a href="https://sgtm.club">SGTM</a> is a platform made by developers making music.</p>
+<p>The platform aims to provide an experience similar to what develop
