@@ -30,4 +30,8 @@
 </p>
 
 <p align="center"><a href="https://sgtm.club">SGTM</a> is a platform made by developers making music.</p>
-<p>The platform aims to provide an experience similar to what develop
+<p>The platform aims to provide an experience similar to what developers can have thanks to Open-Source and modern tools.</p>
+
+## Inspiration
+
+This is an incredible period of history for developers. There are a bunch of free and awesome tools, processes, courses and services to help people connect while they are working on their projects. One of 
