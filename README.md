@@ -34,4 +34,10 @@
 
 ## Inspiration
 
-This is an incredible period of history for developers. There are a bunch of free and awesome tools, processes, courses and services to help people connect while they are working on their projects. One of 
+This is an incredible period of history for developers. There are a bunch of free and awesome tools, processes, courses and services to help people connect while they are working on their projects. One of the most noticeable one is [Open-Source](https://en.wikipedia.org/wiki/Open_source) ecosystem, and particularly, the social tools around it, such as GitHub.
+
+As developers who also make music, it's very frustrating to lose all of these advantages when making music.
+
+---
+
+The way we ma
