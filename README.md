@@ -40,4 +40,10 @@ As developers who also make music, it's very frustrating to lose all of these ad
 
 ---
 
-The way we ma
+The way we make coding projects is basically:
+
+* brainstorms & chat on GitHub, Discord, Slack, etc.
+* looking for snippets on StackOverflow or GitHub.
+* reading advices, feedback and other good practices on dev.to, blogs, etc.
+* coding and getting instant feedback thanks to the pull-request flow.
+* when you pub
