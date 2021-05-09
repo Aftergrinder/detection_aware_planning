@@ -49,4 +49,11 @@ The way we make coding projects is basically:
 * when you publish your project, it's not finished, you can still add new stuff.
 * even if you make the project for your own need, there are chances that making it open-source will help other people directly or indirectly.
 
-In other words, as a developer you are always sharing micro cha
+In other words, as a developer you are always sharing micro changes and getting feedback/help during the ongoing creation process.
+
+---
+
+Now let's talk about the music creation process:
+
+* if you are lucky, you are in a band and you are already sharing your project files, but most of the time, a music creation process is very solitary.
+* 
