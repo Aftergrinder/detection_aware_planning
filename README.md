@@ -56,4 +56,5 @@ In other words, as a developer you are always sharing micro changes and getting 
 Now let's talk about the music creation process:
 
 * if you are lucky, you are in a band and you are already sharing your project files, but most of the time, a music creation process is very solitary.
-* 
+* if you are lucky, you create masterpieces very quickly and release singles very often, but most of the time, an artist is working for multiple months without showing anything, and then, one day, it's the release day, you release it, everyone discovers your finished work and start giving feedback.
+* dur
