@@ -59,4 +59,9 @@ Now let's talk about the music creation process:
 * if you are lucky, you create masterpieces very quickly and release singles very often, but most of the time, an artist is working for multiple months without showing anything, and then, one day, it's the release day, you release it, everyone discovers your finished work and start giving feedback.
 * during these lonely months, musicians are used to show to their friends "hey look at what I'm working on", but this is something they do directly on their computer or by sending .mp3 files on messengers.
 
-In other words, a long & lonely process; then the release where people will give feedback on a 
+In other words, a long & lonely process; then the release where people will give feedback on a finished work that won't change.
+
+## What SGTM could be
+
+* A platform where you upload your ongoing (unfinished) tracks to receive feedback or just get the motivation of publicly showing that you are doing music
+* A platform focused on the interactions between individual contributors where you can easily have so
