@@ -72,4 +72,8 @@ In other words, a long & lonely process; then the release where people will give
 
 This comparison is not very detailed but aims to give you an overview of what makes SGTM different.
 
-Please feel f
+Please feel free to open a PR if you think that this comparison may unfairly harm any of our **"**competitors**"** :p.
+
+|                     | Existing Platforms         | SGTM                          |
+| ------------------- | -------------------------- | ----------------------------- |
+| User Target         | Bands/Artists   
