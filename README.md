@@ -66,4 +66,10 @@ In other words, a long & lonely process; then the release where people will give
 * A platform where you upload your ongoing (unfinished) tracks to receive feedback or just get the motivation of publicly showing that you are doing music
 * A platform focused on the interactions between individual contributors where you can easily have someone doing a V1, and another one doing the V2, etc
 * A platform where artists can easily share the sources of their work or just the materials to help people making remixes (.mid, scores/chords, etc)
-* A platform made by engineers how love the science behind audio and music; connected to 
+* A platform made by engineers how love the science behind audio and music; connected to a lot of tools and services to automatically give you information about your tracks (BPM, energy, mood, fingerprints, peaks, etc)
+
+## Comparison with other platforms
+
+This comparison is not very detailed but aims to give you an overview of what makes SGTM different.
+
+Please feel f
