@@ -76,4 +76,7 @@ Please feel free to open a PR if you think that this comparison may unfairly har
 
 |                     | Existing Platforms         | SGTM                          |
 | ------------------- | -------------------------- | ----------------------------- |
-| User Target         | Bands/Artists   
+| User Target         | Bands/Artists              | Individual Musician           |
+| Audience Target     | Music listeners            | Other Musicians/Collaborators       |
+| What is uploaded    | Finished tracks and albums | Ongoing tracks                |
+| When it is uploaded | On new release          
