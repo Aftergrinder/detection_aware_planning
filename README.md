@@ -84,4 +84,12 @@ Please feel free to open a PR if you think that this comparison may unfairly har
 
 ## Contributing
 
-We really welcome contributions. Your input is the most precious material. We're well aware of that and we thank you in advance. Everyone i
+We really welcome contributions. Your input is the most precious material. We're well aware of that and we thank you in advance. Everyone is encouraged to look at what they can do on their own scale; no effort is too small.
+
+Everything on contribution is sum up here: [CONTRIBUTING.MD](./CONTRIBUTING.MD).
+
+## Links & Resources
+
+* [Official Website: https://sgtm.club](https://sgtm.club)
+* [`/open`: Open Startup](https://sgtm.club/open)
+* [Ope
