@@ -92,4 +92,8 @@ Everything on contribution is sum up here: [CONTRIBUTING.MD](./CONTRIBUTING.MD).
 
 * [Official Website: https://sgtm.club](https://sgtm.club)
 * [`/open`: Open Startup](https://sgtm.club/open)
-* [Ope
+* [Open-Roadmap on Trello](https://trello.com/b/kEb17Beb)
+* [`sgtm-club` GitHub organization](https://github.com/sgtm-club)
+* Created by [Manfred Touron](https://manfred.life)
+* Help & Support: click on the chat button at the bottom-right of sgtm or [fill an issue](https://github.com/sgtm-club/sgtm/issues)
+* [Join the 
