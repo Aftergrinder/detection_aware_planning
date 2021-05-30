@@ -4,4 +4,9 @@ package sgtm;
 
 option go_package = "moul.io/sgtm/pkg/sgtmpb";
 
-import "google/
+import "google/api/annotations.proto";
+import "patch/go.proto";
+
+service WebAPI {
+  //rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Register", body: "*"}; }
+  rpc UserList(UserList.Request) returns (UserList.Response) { option (google.api.http) = {get: "/api/v1/UserList
