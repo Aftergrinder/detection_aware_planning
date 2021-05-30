@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package sgtm;
+
+option go_package = "moul.io/sgtm/pkg/sgtmpb";
+
+import "google/
