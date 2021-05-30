@@ -101,4 +101,10 @@ Everything on contribution is sum up here: [CONTRIBUTING.MD](./CONTRIBUTING.MD).
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/sgtm-club/sgtm.svg)](https://starchart.cc/sg
+[![Stargazers over time](https://starchart.cc/sgtm-club/sgtm.svg)](https://starchart.cc/sgtm-club/sgtm)
+
+## License
+
+© 2020-2021 [Manfred Touron](https://manfred.life) and other [contributors](https://github.com/sgtm-club/sgtm/graphs/contributors).
+
+Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) ([`LICENSE-APACHE`](LICENSE-APACHE)) or the [MIT license](https://opens
