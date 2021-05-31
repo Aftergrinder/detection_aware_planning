@@ -9,4 +9,7 @@ import "patch/go.proto";
 
 service WebAPI {
   //rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Register", body: "*"}; }
-  rpc UserList(UserList.Request) returns (UserList.Response) { option (google.api.http) = {get: "/api/v1/UserList
+  rpc UserList(UserList.Request) returns (UserList.Response) { option (google.api.http) = {get: "/api/v1/UserList"}; }
+  rpc PostList(PostList.Request) returns (PostList.Response) { option (google.api.http) = {get: "/api/v1/PostList"}; }
+  // rpc PostSync(PostSync.Request) returns (PostSync.Response) { option (google.api.http) = {get: "/api/v1/PostSync"}; }
+  rpc Me(Me.Request) retur
