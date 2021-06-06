@@ -17,4 +17,21 @@ service WebAPI {
   rpc Status(Status.Request) returns (Status.Response) { option (google.api.http) = {get: "/api/v1/Status"}; }
 }
 
-me
+message Ping {
+  message Request {}
+  message Response {}
+}
+
+message Status {
+  message Request {}
+  message Response {
+    int32 uptime = 1;
+    string hostname = 2;
+    bool everything_is_ok = 3;
+  }
+}
+
+message Register {
+  message Request {
+    string email = 10;
+    string
