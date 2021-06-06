@@ -34,4 +34,23 @@ message Status {
 message Register {
   message Request {
     string email = 10;
-    string
+    string slug = 11;
+    string firstname = 12;
+    string lastname = 13;
+  }
+  message Response {
+    User user = 1;
+  }
+}
+
+message UserList {
+  message Request {}
+  message Response {
+    repeated User users = 1;
+  }
+}
+
+message PostList {
+  message Request {}
+  message Response {
+    repe
