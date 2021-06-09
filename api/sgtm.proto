@@ -53,4 +53,26 @@ message UserList {
 message PostList {
   message Request {}
   message Response {
-    repe
+    repeated Post posts = 1;
+  }
+}
+
+message PostSync {
+  message Request {
+    int64 id = 1 [(go.field) = {name: 'ID'}];
+  }
+  message Response {}
+}
+
+message Me {
+  message Request {}
+  message Response {
+    User user = 1;
+  }
+}
+
+/// Models
+
+/*
+╔══════════════╗    ╔══════════════╗
+║     Post     ║    ║ 
