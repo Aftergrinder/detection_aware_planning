@@ -75,4 +75,11 @@ message Me {
 
 /*
 ╔══════════════╗    ╔══════════════╗
-║     Post     ║    ║ 
+║     Post     ║    ║     User     ║
+║              ║    ║              ║
+║    Author    ║    ║    Email     ║
+║    Title     ║    ║     Slug     ║
+║     Slug     ║────║     Name     ║
+║   ReplyTo    ║    ║              ║
+║    ForkOf    ║    ║              ║
+║     Kind     ║    ║       
