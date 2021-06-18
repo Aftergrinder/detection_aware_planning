@@ -102,4 +102,10 @@ message User {
   string lastname = 13 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
   string locale = 14 [(go.field) = {tags: 'gorm:"size:32;not null;default:\'\'"'}];
   string avatar = 15 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
-  string discord_id 
+  string discord_id = 16 [(go.field) = {name: "DiscordID", tags: 'gorm:"size:255;not null;default:\'\'"'}];
+  string discord_username = 17 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
+  string headline = 18;
+  string bio = 19;
+  string inspirations = 20;
+  string gears = 21;
+  string
