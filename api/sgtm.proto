@@ -99,4 +99,7 @@ message User {
   string email = 10 [(go.field) = {tags: 'gorm:"size:255;not null;index:,unique"'}];
   string slug = 11 [(go.field) = {tags: 'gorm:"size:32;not null;default:\'\'"'}];
   string firstname = 12 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
-  string
+  string lastname = 13 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
+  string locale = 14 [(go.field) = {tags: 'gorm:"size:32;not null;default:\'\'"'}];
+  string avatar = 15 [(go.field) = {tags: 'gorm:"size:255;not null;default:\'\'"'}];
+  string discord_id 
