@@ -121,4 +121,9 @@ message User {
   // timezone
   // location
 
-  /// relati
+  /// relationships
+
+  repeated Post recent_posts = 50 [(go.field) = {tags: 'gorm:"foreignkey:AuthorID;PRELOAD:false"'}];
+  repeated Relationship relationships_as_source = 51 [(go.field) = {tags: 'gorm:"foreignKey:SourceUserID"'}];
+  repeated Relationship relationships_as_target = 52 [(go.field) = {tags: 'gorm:"foreignKey:TargetUserID"'}];
+}
