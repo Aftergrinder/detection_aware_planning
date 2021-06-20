@@ -108,4 +108,17 @@ message User {
   string bio = 19;
   string inspirations = 20;
   string gears = 21;
-  string
+  string genres = 22;
+  string location = 23;
+  string twitter_username = 24;
+  string homepage = 25;
+  string other_links = 26;
+  string goals = 27;
+  string soundcloud_username = 28;
+  string role = 29;
+  int64 processing_version = 30;
+  string processing_error = 31;
+  // timezone
+  // location
+
+  /// relati
