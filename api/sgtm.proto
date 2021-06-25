@@ -134,4 +134,16 @@ message Post {
   int64 id = 1 [(go.field) = {name: 'ID', tags: 'gorm:"primary_key"'}];
   int64 created_at = 2 [(go.field) = {tags: 'gorm:"autocreatetime:nano"'}];
   int64 updated_at = 3 [(go.field) = {tags: 'gorm:"autoupdatetime:nano"'}];
-  int64 deleted_at = 4
+  int64 deleted_at = 4;
+
+  /// generic
+
+  User author = 10;
+  int64 author_id = 11 [(go.field) = {name: 'AuthorID'}];
+  string title = 12;
+  string slug = 13;
+  Kind kind = 14;
+  Visibility visibility = 15;
+  string url = 16 [(go.field) = {name: 'URL'}];
+  Provider provider = 17;
+  string body 
