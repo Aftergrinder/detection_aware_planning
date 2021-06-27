@@ -155,4 +155,15 @@ message Post {
 
   //int64 thread_post_id = 20 [(go.field) = {name: 'ThreadPostID'}];
   //Post thread_post = 21;
-  //int64 reply_to_id = 22 [(go.field) = {name: 'ReplyToID
+  //int64 reply_to_id = 22 [(go.field) = {name: 'ReplyToID'}];
+  //Post reply_to = 23;
+
+  /// track
+
+  string genre = 40 [deprecated = true]; // replaced by 'tags'
+  uint64 duration = 41;
+  string artwork_url = 42 [(go.field) = {name: 'ArtworkURL'}];
+  double bpm = 43 [(go.field) = {name: 'BPM'}];
+  string key_signature = 44;
+  string isrc = 45 [(go.field) = {name: 'ISRC'}];
+  string provider_
