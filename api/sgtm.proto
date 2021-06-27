@@ -146,4 +146,13 @@ message Post {
   Visibility visibility = 15;
   string url = 16 [(go.field) = {name: 'URL'}];
   Provider provider = 17;
-  string body 
+  string body = 18;
+  int64 sort_date = 19;
+  int64 processing_version = 20;
+  string processing_error = 21;
+
+  /// comment
+
+  //int64 thread_post_id = 20 [(go.field) = {name: 'ThreadPostID'}];
+  //Post thread_post = 21;
+  //int64 reply_to_id = 22 [(go.field) = {name: 'ReplyToID
