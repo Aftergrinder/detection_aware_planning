@@ -175,4 +175,12 @@ message Post {
   string tags = 51; // comma separated list of tags
   string lyrics = 52;
 
-  /// so
+  /// soundcloud post
+
+  string soundcloud_secret_token = 80 [(go.field) = {name: 'SoundCloudSecretToken'}];
+  uint64 soundcloud_id = 81 [(go.field) = {name: 'SoundCloudID'}];
+  SoundCloudKind soundcloud_kind = 83 [(go.field) = {name: 'SoundCloudKind'}];
+
+  /// ipfs post
+
+  string ipfs_cid = 90 [(go.field)
