@@ -213,4 +213,18 @@ message Post {
     TrackKind = 1;
     LoginKind = 2;
     RegisterKind = 3;
-    LinkDiscordAccountKind =
+    LinkDiscordAccountKind = 4;
+    ViewProfileKind = 5;
+    ViewPostKind = 6;
+    ViewOpenKind = 7;
+    ViewHomeKind = 8;
+    CommentKind = 9;
+    //ViewOwnProfileKind
+    //ViewOwnTrackKind
+    //EditTrackKind
+    //EditProfileKind
+    //ReactionKind
+    //ForkKind
+    //FeatKind
+  }
+}
