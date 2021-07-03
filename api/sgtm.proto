@@ -193,3 +193,11 @@ message Post {
 
   int64 target_user_id = 101 [(go.field) = {name: 'TargetUserID'}];
   User target_user = 102;
+  int64 target_post_id = 103 [(go.field) = {name: 'TargetPostID'}];
+  Post target_post = 104;
+  string target_metadata = 105;
+
+  /// relationships
+
+  repeated Relationship relationships_as_source = 110 [(go.field) = {tags: 'gorm:"foreignKey:SourcePostID"'}];
+  repeated Relationship relationships_as_target =
