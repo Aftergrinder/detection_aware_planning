@@ -183,4 +183,13 @@ message Post {
 
   /// ipfs post
 
-  string ipfs_cid = 90 [(go.field)
+  string ipfs_cid = 90 [(go.field) = {name: 'IPFSCID'}];
+  string mime_type = 91 [(go.field) = {name: 'MIMEType'}];
+  int64 size_bytes = 92;
+  string file_extension = 93;
+  string attachment_filename = 94;
+
+  /// tracking activities
+
+  int64 target_user_id = 101 [(go.field) = {name: 'TargetUserID'}];
+  User target_user = 102;
