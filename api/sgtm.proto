@@ -244,4 +244,16 @@ message Relationship {
   Post source_post = 12;
   int64 target_post_id = 13 [(go.field) = {name: 'TargetPostID'}];
   Post target_post = 14;
-  int64 source_user_id = 15 [(go.field) = {name: '
+  int64 source_user_id = 15 [(go.field) = {name: 'SourceUserID'}];
+  User source_user = 16;
+  int64 target_user_id = 17 [(go.field) = {name: 'TargetUserID'}];
+  User target_user = 18;
+  string source_raw = 19;
+  string target_raw = 20;
+  string metadata = 21;
+
+  enum Kind {
+    UnknownKind = 0;
+    FeaturingUserKind = 1;
+    RemixOfTrackKind = 2;
+    NewVersionOfTrackKind 
