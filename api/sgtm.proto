@@ -256,4 +256,26 @@ message Relationship {
     UnknownKind = 0;
     FeaturingUserKind = 1;
     RemixOfTrackKind = 2;
-    NewVersionOfTrackKind 
+    NewVersionOfTrackKind = 3;
+    InspiredByTrackKind = 4;
+    RemixOfUserKind = 5;
+  }
+}
+
+/// Common enums
+
+enum Visibility {
+  UnknownVisibility = 0;
+  Public = 1;
+  Draft = 2;
+}
+enum Provider {
+  UnknownProvider = 0;
+  SoundCloud = 1;
+  IPFS = 2;
+}
+
+/// Internal
+
+message Session {
+  int64 user_id = 1 [(go.field)
