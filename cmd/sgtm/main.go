@@ -75,3 +75,107 @@ func app(args []string) error {
 			ff.WithConfigFileParser(ff.PlainParser),
 			ff.WithAllowMissingConfigFile(true),
 		},
+		Subcommands: []*ffcli.Command{
+			{Name: "run", Exec: runCmd},
+		},
+		Exec: func(context.Context, []string) error {
+			return flag.ErrHelp
+		},
+	}
+
+	return root.ParseAndRun(context.Background(), args[1:])
+}
+
+func runCmd(ctx context.Context, _ []string) error {
+	// init
+	rand.Seed(srand.MustSecure())
+	svcOpts.Context = ctx
+
+	// sentry
+	if !svcOpts.DevMode {
+		err := sentry.Init(sentry.ClientOptions{
+			Dsn:     "https://5c6262a183b447b4909afc0ae980cef6@o419562.ingest.sentry.io/5371558",
+			Release: sgtmversion.Version,
+		})
+		if err != nil {
+			return err
+		}
+		defer sentry.Flush(2 * time.Second)
+		sentry.CaptureMessage("Starting SGTM Server")
+	}
+
+	// bearer
+	// FIXME: TODO
+
+	// zap logger
+	{
+		svcOpts.Logger = zapconfig.Configurator{}.MustBuild()
+		svcOpts.Logger.Debug("logger configured",
+			zap.String("version", sgtmversion.Version),
+			zap.String("vcs-ref", sgtmversion.VcsRef),
+			zap.String("biuld-date", sgtmversion.BuildDate),
+		)
+	}
+
+	// bearer
+	if token := svcOpts.BearerToken; token != "" {
+		bearer.ReplaceGlobals(bearer.Init(token))
+	}
+
+	// init db
+	var store sgtmstore.Store
+	{
+		var err error
+		zg := zapgorm2.New(svcOpts.Logger.Named("gorm"))
+		zg.LogLevel = gormlogger.Info
+		zg.SetAsDefault()
+		config := &gorm.Config{
+			Logger:                                   zg,
+			NamingStrategy:                           schema.NamingStrategy{TablePrefix: "sgtm_", SingularTable: true},
+			DisableForeignKeyConstraintWhenMigrating: true,
+		}
+		db, err := gorm.Open(sqlite.Open(svcOpts.DBPath), config)
+		if err != nil {
+			return fmt.Errorf("gorm init: %w", err)
+		}
+
+		sfn, err := snowflake.NewNode(1)
+		if err != nil {
+			return fmt.Errorf("snowflake init: %w", err)
+		}
+		svcOpts.Snowflake = sfn
+		store, err = sgtmstore.New(db, sfn)
+		if err != nil {
+			return fmt.Errorf("store init: %w", err)
+		}
+	}
+
+	// init service
+	var svc *sgtm.Service
+	{
+		var err error
+		svc, err = sgtm.New(store, svcOpts)
+		if err != nil {
+			return err
+		}
+		defer svc.Close()
+	}
+
+	// run.Group
+	var gr run.Group
+	{
+		if svcOpts.EnableDiscord || svcOpts.EnableServer || svcOpts.EnableProcessingWorker {
+			gr.Add(run.SignalHandler(ctx, syscall.SIGTERM, syscall.SIGINT, os.Interrupt, os.Kill))
+		}
+		if svcOpts.EnableDiscord {
+			gr.Add(svc.StartDiscord, svc.CloseDiscord)
+		}
+		if svcOpts.EnableProcessingWorker {
+			gr.Add(svc.StartProcessingWorker, svc.CloseProcessingWorker)
+		}
+		if svcOpts.EnableServer {
+			gr.Add(svc.StartServer, svc.CloseServer)
+		}
+	}
+	return gr.Run()
+}
