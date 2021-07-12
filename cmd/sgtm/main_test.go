@@ -10,4 +10,7 @@ import (
 func TestMain(t *testing.T) {
 	ctx := context.Background()
 	svcOpts.EnableDiscord = false
-	svcOpts.EnableServer
+	svcOpts.EnableServer = false
+	err := runCmd(ctx, []string{})
+	require.NoError(t, err)
+}
