@@ -13,4 +13,25 @@ logs:
 logs-once:
 	docker-compose logs --tail=1000 -f
 
-.PHONY: ps pu
+.PHONY: ps pull restart stop kill
+ps pull restart stop kill:
+	docker-compose $@
+
+.PHONY: dbshell
+dbshell:
+	sudo sqlite3 sgtm.db
+
+.PHONY: dbdump
+dbdump:
+	sqlite3 sgtm.db .dump
+
+.PHONY: dbflush
+dbflush:
+	rm -f sgtm.db
+
+.PHONY: down
+down:
+	docker-compose down --remove-orphans
+
+.PHONY: re
+re: pu
