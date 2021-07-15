@@ -34,4 +34,9 @@ down:
 	docker-compose down --remove-orphans
 
 .PHONY: re
-re: pu
+re: pull up
+
+.PHONY: backup
+backup:
+	@mkdir -p backups/`date +%Y-%m`
+	sqlite3 sgtm.db -cmd '.timeout 20000' ".backup backups/`date +%Y-%m`/`date +%Y-%m-%d_%H:%M:%S`.sqlite3"
