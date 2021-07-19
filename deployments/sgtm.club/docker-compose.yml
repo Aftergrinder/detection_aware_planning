@@ -11,4 +11,18 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: "true"
     command: |
-      -
+      --enable-server
+      --ipfs-api /dns4/ipfs-daemon/tcp/5001
+      run
+    ports:
+      - 8000
+    environment:
+      - VIRTUAL_HOST=sgtm.club
+      - LETSENCRYPT_HOST=sgtm.club
+      - VIRTUAL_PORT=8000
+    networks:
+      - default
+      - ipfs
+      - service-proxy
+
+  sgtm-di
