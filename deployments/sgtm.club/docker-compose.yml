@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  sgtm-server:
+    image: moul/sgtm:latest
+    restart: on-failure
+    volumes:
+      - .:/app
+      - "/etc/localtime:/etc/localtime:ro"
+    working_dir: /app
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    command: |
+      -

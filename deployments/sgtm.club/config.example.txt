@@ -5,4 +5,4 @@ discord-admin-channel REPLACE_ME
 
 ## Server
 enable-server true
-server-bind 0.0.0.0:800
+server-bind 0.0.0.0:8000
