@@ -39,4 +39,16 @@ services:
 
   sgtm-processing-worker:
     image: moul/sgtm:latest
-    re
+    restart: on-failure
+    volumes:
+      - .:/app
+    working_dir: /app
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    command: --enable-processing-worker run
+    networks:
+      - default
+
+  ipfs-daemon:
+    image: ipfs/go-ipfs:latest
+    restart
