@@ -163,4 +163,8 @@ github.com/go-chi/chi v4.0.2+incompatible/go.mod h1:eB3wogJHnLi3x/kFX2A+IbTBlXxm
 github.com/go-chi/chi v4.1.2+incompatible h1:fGFk2Gmi/YKXk0OmGfBh0WgmN3XB8lVnEyNz34tQRec=
 github.com/go-chi/chi v4.1.2+incompatible/go.mod h1:eB3wogJHnLi3x/kFX2A+IbTBlXxmMeXJVKy9tTv1XzQ=
 github.com/go-chi/jsonp v0.0.0-20170809160916-b971022286e2 h1:2c3FgELeVI+A0/GZ5xOVCshaAhP87//dwmYvOUJUkeo=
-github.com/go-chi/jsonp v0.0.0-20170809160916-b971022286e2/go.mod h1:G
+github.com/go-chi/jsonp v0.0.0-20170809160916-b971022286e2/go.mod h1:GDGxNyZ4xc0cql8PZjNrAWIan7yy89rRAMMcHojj/f4=
+github.com/go-chi/render v1.0.1 h1:4/5tis2cKaNdnv9zFLfXzcquC9HbeZgCnxGnKrltBS8=
+github.com/go-chi/render v1.0.1/go.mod h1:pq4Rr7HbnsdaeHagklXub+p6Wd16Af5l9koip1OvJns=
+github.com/go-errors/errors v1.0.1 h1:LUHzmkK3GUKUrL/1gfBUxAHzcev3apQlezX/+O7ma6w=
+github.co
