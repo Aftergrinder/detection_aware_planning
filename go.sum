@@ -496,4 +496,7 @@ github.com/schollz/closestmatch v2.1.0+incompatible/go.mod h1:RtP1ddjLong6gTkbtm
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/shazow/memoizer v0.0.0-20130904030615-74fc48eaeadc h1:uSeTSeeORwncCP2XKVZC3boAwbtXohDLo2MBan13xss=
 github.com/shazow/memoizer v0.0.0-20130904030615-74fc48eaeadc/go.mod h1:MSsSkysG88MjF7tQjinyfOtTjQojXMJF4Ts8MDbV7/o=
-github.com/shopspring/
+github.com/shopspring/decimal v1.2.0 h1:abSATXmQEYyShuxI4/vyW3tV1MrKAJzCZ/0zLUXYbsQ=
+github.com/shopspring/decimal v1.2.0/go.mod h1:DKyhrW/HYNuLGql+MJL6WCR6knT2jwCFRcu2hWCYk4o=
+github.com/shurcooL/component v0.0.0-20170202220835-f88ec8f54cc4/go.mod h1:XhFIlyj5a1fBNx5aJTbKoIq0mNaPvOagO+HjB3EtxrY=
+github.com/shurcooL/events v0.0.0-2018102118041
