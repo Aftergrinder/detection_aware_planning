@@ -568,4 +568,7 @@ github.com/tpyolang/tpyo-cli v1.0.0/go.mod h1:gYyKr7Mog1FDfbA58jt3iYlcUZY5ztHkHj
 github.com/treastech/logger v0.0.0-20180705232552-e381e9ecf2e3 h1:0SnC9653NEySn3YUL1UV9o45KfQzszcOpIJ2f2BlrVg=
 github.com/treastech/logger v0.0.0-20180705232552-e381e9ecf2e3/go.mod h1:duKQLZRLkdeZQlw8QfGYqhBQrjThZ2qRBwA8HYjARn8=
 github.com/ugorji/go v1.1.4/go.mod h1:uQMGLiO92mf5W77hV/PUCpI3pbzQx3CRekS0kk+RGrc=
-github.com/ugorji/go v1.1.7/go.m
+github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
+github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8/go.mod h1:VFNgLljTbGfSG7qAOspJ7OScBnGdDN/yBr0sguwnwf0=
+github.com/ugorji/go/codec v1.1.7/go.mod h1:Ax+UKWsSmolVDwsd+7N3ZtXu+yMGCf907BLYF3GoBXY=
+github.com/urfav
