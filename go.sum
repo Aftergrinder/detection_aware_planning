@@ -587,4 +587,7 @@ github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0/go.mod h1:/LWChgwKmv
 github.com/yanatan16/golang-soundcloud v0.0.0-20161013200625-a182dd459b66 h1:Yb+kCRTXEQh5j5ifICcwCcpS399CvWLeo3vUj7g3k8c=
 github.com/yanatan16/golang-soundcloud v0.0.0-20161013200625-a182dd459b66/go.mod h1:O8c2uEu4wGmxSTy5w3LOeBAsHBYJS9X/YK6vjZiZc2g=
 github.com/yudai/gojsondiff v1.0.0/go.mod h1:AY32+k2cwILAkW1fbgxQ5mUmMiZFgLIV+FBNExI05xg=
-github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82/g
+github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82/go.mod h1:lgjkn3NuSvDfVJdfcVVdX+jpBxNmX4rDAzaS45IcYoM=
+github.com/yudai/pp v2.0.1+incompatible/go.mod h1:PuxR/8QJ7cyCkFp/aUDS+JY727OFEZkTdatxwunjIkc=
+github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
+github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
