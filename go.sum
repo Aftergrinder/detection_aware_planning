@@ -585,4 +585,6 @@ github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q
 github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77/go.mod h1:aYKd//L2LvnjZzWKhF00oedf4jCCReLcmhLdhm1A27Q=
 github.com/yalp/jsonpath v0.0.0-20180802001716-5cc68e5049a0/go.mod h1:/LWChgwKmvncFJFHJ7Gvn9wZArjbV5/FppcK2fKk/tI=
 github.com/yanatan16/golang-soundcloud v0.0.0-20161013200625-a182dd459b66 h1:Yb+kCRTXEQh5j5ifICcwCcpS399CvWLeo3vUj7g3k8c=
-github.com
+github.com/yanatan16/golang-soundcloud v0.0.0-20161013200625-a182dd459b66/go.mod h1:O8c2uEu4wGmxSTy5w3LOeBAsHBYJS9X/YK6vjZiZc2g=
+github.com/yudai/gojsondiff v1.0.0/go.mod h1:AY32+k2cwILAkW1fbgxQ5mUmMiZFgLIV+FBNExI05xg=
+github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82/g
