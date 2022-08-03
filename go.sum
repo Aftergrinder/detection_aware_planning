@@ -1035,4 +1035,8 @@ moul.io/u v1.22.0 h1:DFV8pbHXmxgJL1AcD5ohCS+jTGwMF92kq5g0k4rrQ78=
 moul.io/u v1.22.0/go.mod h1:4Si+MVxJDNFfkqCOtLS6viqkvfeDGYTwykt2iyQ4MoY=
 moul.io/zapconfig v1.3.0 h1:vS5EMh04bXxqp80a6b7mUMeCYn8pEN9kIe7ZHEKfep0=
 moul.io/zapconfig v1.3.0/go.mod h1:9zIkSbBEmO7qv8n0h9RRPqOfiI4W7fWhDoZV2UxXxdI=
-moul.io/zapgorm v0.0.0-20190706070406-8138918b52
+moul.io/zapgorm v0.0.0-20190706070406-8138918b527b/go.mod h1:JDE3xz5BQ1ccnAijE5+T8Qin6T256Bw2Cpdi+qMfWgw=
+moul.io/zapgorm2 v1.0.3 h1:uyoT9s882qYRw3agsdt4EBBE0ZGsQII6+WAwWPiBt0M=
+moul.io/zapgorm2 v1.0.3/go.mod h1:mXhPUhcLBF18b5TPZ0CDgjvE2VDI+1JrPryt8ADuHrg=
+rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
+rsc.io/q
