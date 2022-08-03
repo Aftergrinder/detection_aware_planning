@@ -25,4 +25,16 @@ func (svc *Service) claimsFromContext(ctx context.Context) (*jwtClaims, error) {
 }
 
 func (svc *Service) Me(ctx context.Context, req *sgtmpb.Me_Request) (*sgtmpb.Me_Response, error) {
-	claims, err := 
+	claims, err := svc.claimsFromContext(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	user, err := svc.store.GetUserByID(claims.Session.UserID)
+	if err != nil {
+		return nil, err
+	}
+	return &sgtmpb.Me_Response{User: user}, nil
+}
+
+func (svc *Service) Ping(context.Context, *sgtmpb.Pin
