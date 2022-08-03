@@ -1045,4 +1045,5 @@ sourcegraph.com/sourcegraph/go-diff v0.5.0/go.mod h1:kuch7UrkMzY0X+p9CRK03kfuPQ2
 sourcegraph.com/sqs/pbtypes v0.0.0-20180604144634-d3ebe8f20ae4/go.mod h1:ketZ/q3QxT9HOBeFhu6RdvsftgpsbFHBF5Cas6cDKZ0=
 ultre.me/calcbiz v1.0.0 h1:V8sccZh4Rsit5oggeOfkvdYnLbC2/aZIR4N7FLf+Jq8=
 ultre.me/calcbiz v1.0.0/go.mod h1:R77uTOBNiYi1rPlTX3sUI9sl+4cqXEkFhpDECB2XqPQ=
-ultre.me/kryptos v0.0.0-20181023194748-240fe1a16033/go.mod h1:NueMpFJdxVrRfBPrlVYEfjJhNj6ozl
+ultre.me/kryptos v0.0.0-20181023194748-240fe1a16033/go.mod h1:NueMpFJdxVrRfBPrlVYEfjJhNj6ozlBz1RXYRhsWUak=
+ultre.me/recettator v0.4.1-0.20190210231503-241df3a046a3/go.mod h1:N52M6NqHXK4BWbvDL4ue2cuN3yvn1VYP5adytNtjTWQ=
