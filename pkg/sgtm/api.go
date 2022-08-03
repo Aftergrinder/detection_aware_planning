@@ -37,4 +37,11 @@ func (svc *Service) Me(ctx context.Context, req *sgtmpb.Me_Request) (*sgtmpb.Me_
 	return &sgtmpb.Me_Response{User: user}, nil
 }
 
-func (svc *Service) Ping(context.Context, *sgtmpb.Pin
+func (svc *Service) Ping(context.Context, *sgtmpb.Ping_Request) (*sgtmpb.Ping_Response, error) {
+	return &sgtmpb.Ping_Response{}, nil
+}
+
+func (svc *Service) Status(context.Context, *sgtmpb.Status_Request) (*sgtmpb.Status_Response, error) {
+	hostname, _ := os.Hostname()
+	return &sgtmpb.Status_Response{
+		Uptime:         int32(time.Since(svc.StartedAt).Se
