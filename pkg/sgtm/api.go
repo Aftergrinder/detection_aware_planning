@@ -58,4 +58,11 @@ func (svc *Service) UserList(context.Context, *sgtmpb.UserList_Request) (*sgtmpb
 	return &sgtmpb.UserList_Response{Users: users}, nil
 }
 
-fun
+func (svc *Service) PostList(context.Context, *sgtmpb.PostList_Request) (*sgtmpb.PostList_Response, error) {
+	posts, err := svc.store.GetPostList(100)
+	if err != nil {
+		return nil, err
+	}
+
+	return &sgtmpb.PostList_Response{Posts: posts}, nil
+}
