@@ -21,4 +21,18 @@ func (svc *Service) errRender(w http.ResponseWriter, r *http.Request, err error,
 	}
 }
 
-func errToResponse(err error,
+func errToResponse(err error, status int) *errResponse {
+	// FIXME: if DevMode, print stacktrace
+	if status == 0 {
+		status = http.StatusUnprocessableEntity
+	}
+	return &errResponse{
+		Type:     "about:blank",
+		Title:    http.StatusText(status),
+		Status:   status,
+		Detail:   err.Error(),
+		Instance: "",
+	}
+}
+
+// based
