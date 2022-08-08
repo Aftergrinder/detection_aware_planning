@@ -35,4 +35,13 @@ func errToResponse(err error, status int) *errResponse {
 	}
 }
 
-// based
+// based on github.com/moogar0880/problems.DefaultProblem
+type errResponse struct {
+	Type     string `json:"type"`
+	Title    string `json:"title"`
+	Status   int    `json:"status,omitempty"`
+	Detail   string `json:"detail,omitempty"`
+	Instance string `json:"instance,omitempty"`
+}
+
+func (e *errResponse) Render(
