@@ -44,4 +44,7 @@ type errResponse struct {
 	Instance string `json:"instance,omitempty"`
 }
 
-func (e *errResponse) Render(
+func (e *errResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	render.Status(r, e.Status)
+	return nil
+}

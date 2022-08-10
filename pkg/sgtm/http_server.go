@@ -1,0 +1,204 @@
+
+package sgtm
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"log"
+	"net"
+	"net/http"
+	"net/http/pprof"
+	"os"
+	"runtime/debug"
+	"strings"
+	"sync"
+
+	"github.com/cespare/hutil/apachelog"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/jsonp"
+	"github.com/go-chi/render"
+	packr "github.com/gobuffalo/packr/v2"
+	"github.com/gogo/gateway"
+	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
+	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/ikeikeikeike/go-sitemap-generator/v2/stm"
+	"github.com/oklog/run"
+	"github.com/rs/cors"
+	"github.com/soheilhy/cmux"
+	chilogger "github.com/treastech/logger"
+	"go.uber.org/zap"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+	"gopkg.in/natefinch/lumberjack.v2"
+	"moul.io/banner"
+	"moul.io/sgtm/pkg/sgtmpb"
+)
+
+type serverDriver struct {
+	listener net.Listener
+	lock     sync.Mutex
+}
+
+func (svc *Service) StartServer() error {
+	svc.server.lock.Lock()
+	gr, err := svc.prepareStartServer()
+	if err != nil {
+		return fmt.Errorf("prepare start server: %w", err)
+	}
+	svc.server.lock.Unlock()
+	return gr.Run()
+}
+
+func (svc *Service) prepareStartServer() (*run.Group, error) {
+	if !svc.unittest {
+		fmt.Fprintln(os.Stderr, banner.Inline("server"))
+	}
+	svc.logger.Debug("starting server", zap.String("bind", svc.opts.ServerBind))
+
+	// listeners
+	var err error
+	svc.server.listener, err = net.Listen("tcp", svc.opts.ServerBind)
+	if err != nil {
+		return nil, fmt.Errorf("net listen: %w", err)
+	}
+	smux := cmux.New(svc.server.listener)
+	smux.HandleError(func(err error) bool {
+		svc.logger.Warn("cmux error", zap.Error(err))
+		return true
+	})
+	grpcListener := smux.MatchWithWriters(cmux.HTTP2MatchHeaderFieldPrefixSendSettings("content-type", "application/grpc"))
+	httpListener := smux.Match(cmux.HTTP2(), cmux.HTTP1())
+
+	// grpc server
+	grpcServer := svc.grpcServer()
+	var gr run.Group
+	gr.Add(func() error {
+		err := grpcServer.Serve(grpcListener)
+		if err != cmux.ErrListenerClosed {
+			return err
+		}
+		return nil
+	}, func(error) {
+		err := grpcListener.Close()
+		if err != nil {
+			svc.logger.Warn("close gRPC listener", zap.Error(err))
+		}
+	})
+
+	// http server
+	httpServer, err := svc.httpServer()
+	if err != nil {
+		return nil, fmt.Errorf("http server: %w", err)
+	}
+	gr.Add(func() error {
+		err := httpServer.Serve(httpListener)
+		if err != cmux.ErrListenerClosed {
+			return err
+		}
+		return nil
+	}, func(error) {
+		ctx, cancel := context.WithTimeout(svc.ctx, svc.opts.ServerShutdownTimeout)
+		err := httpServer.Shutdown(ctx)
+		if err != nil {
+			svc.logger.Warn("shutdown HTTP server", zap.Error(err))
+		}
+		defer cancel()
+		err = httpListener.Close()
+		if err != nil {
+			svc.logger.Warn("close HTTP listener", zap.Error(err))
+		}
+	})
+
+	// cmux
+	gr.Add(
+		smux.Serve,
+		func(err error) {
+			if err != nil {
+				svc.logger.Warn("cmux terminated", zap.Error(err))
+			} else {
+				svc.logger.Debug("cmux terminated")
+			}
+		},
+	)
+
+	// context
+	gr.Add(func() error {
+		<-svc.ctx.Done()
+		svc.logger.Debug("parent ctx done")
+		return nil
+	}, func(error) {})
+
+	return &gr, nil
+}
+
+func (svc *Service) CloseServer(err error) {
+	svc.server.lock.Lock()
+	defer svc.server.lock.Unlock()
+
+	svc.logger.Debug("closing server", zap.Bool("was-started", svc.server.listener != nil), zap.Error(err))
+	if svc.server.listener != nil {
+		svc.server.listener.Close()
+	}
+	svc.cancel()
+}
+
+func (svc *Service) ServerListenerAddr() string {
+	svc.server.lock.Lock()
+	defer svc.server.lock.Unlock()
+
+	if svc.server.listener == nil || svc.server.listener.Addr() == nil {
+		return ""
+	}
+	return svc.server.listener.Addr().String()
+}
+
+func (svc *Service) httpServer() (*http.Server, error) {
+	r := chi.NewRouter()
+	r.Use(cors.New(cors.Options{
+		AllowedOrigins:   strings.Split(svc.opts.ServerCORSAllowedOrigins, ","),
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300,
+	}).Handler)
+	r.Use(chilogger.Logger(svc.logger))
+	r.Use(middleware.Recoverer)
+	if svc.opts.ServerRequestTimeout > 0 {
+		r.Use(middleware.Timeout(svc.opts.ServerRequestTimeout))
+	}
+	r.Use(middleware.RealIP)
+	r.Use(middleware.RequestID)
+	r.Use(render.SetContentType(render.ContentTypeJSON))
+
+	gatewayMetadataAnnotator := func(_ context.Context, r *http.Request) metadata.MD {
+		mdmap := make(map[string]string)
+		cookieToken, err := r.Cookie("oauth-token")
+		if err == nil {
+			mdmap["oauth-token"] = cookieToken.Value
+		}
+		return metadata.New(mdmap)
+	}
+	gatewayCustomMatcher := func(key string) (string, bool) {
+		if key == "Cookie" {
+			return key, true
+		}
+		return runtime.DefaultHeaderMatcher(key)
+	}
+	runtimeMux := runtime.NewServeMux(
+		runtime.WithMarshalerOption(runtime.MIMEWildcard, &gateway.JSONPb{
+			EmitDefaults: false,
+			Indent:       "  ",
+			OrigName:     true,
+		}),
+		runtime.WithProtoErrorHandler(runtime.DefaultHTTPProtoErrorHandler),
+		runtime.WithMetadata(gatewayMetadataAnnotator),
+		runtime.WithIncomingHeaderMatcher(gatewayCustomMatcher),
+	)
