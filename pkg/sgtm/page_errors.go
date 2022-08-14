@@ -20,3 +20,15 @@ func (svc *Service) error404Page(box *packr.Box) func(w http.ResponseWriter, r *
 		}
 		// custom
 		// end of custom
+		if svc.opts.DevMode {
+			tmpl = loadTemplates(box, "base.tmpl.html", "error404.tmpl.html")
+		}
+		data.Duration = time.Since(started)
+		if err := tmpl.Execute(w, &data); err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+	}
+}
+
+func (svc *Service) error
