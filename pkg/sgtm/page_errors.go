@@ -47,4 +47,12 @@ func (svc *Service) errorPage(box *packr.Box) func(w http.ResponseWriter, r *htt
 		}
 		// end of custom
 		if svc.opts.DevMode {
-			tmpl = loadTemplates(box
+			tmpl = loadTemplates(box, "base.tmpl.html", "error.tmpl.html")
+		}
+		data.Duration = time.Since(started)
+		if err := tmpl.Execute(w, &data); err != nil {
+			svc.errRender(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+	}
+}
