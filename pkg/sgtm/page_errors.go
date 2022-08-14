@@ -31,4 +31,8 @@ func (svc *Service) error404Page(box *packr.Box) func(w http.ResponseWriter, r *
 	}
 }
 
-func (svc *Service) error
+func (svc *Service) errorPage(box *packr.Box) func(w http.ResponseWriter, r *http.Request, err error, status int) {
+	tmpl := loadTemplates(box, "base.tmpl.html", "error.tmpl.html")
+	return func(w http.ResponseWriter, r *http.Request, userError error, status int) {
+		started := time.Now()
+		data, err := svc.newTemplate
