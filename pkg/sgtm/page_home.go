@@ -40,4 +40,14 @@ func (svc *Service) homePage(box *packr.Box) func(w http.ResponseWriter, r *http
 			}
 			data.Home.LastTracks, err = svc.store.GetPostList(limit)
 			if err != nil {
-				dat
+				data.Error = "Cannot fetch last tracks: " + err.Error()
+			}
+			for _, track := range data.Home.LastTracks {
+				track.ApplyDefaults()
+			}
+		}
+
+		// last users
+		{
+			if data.Home.LastUsers, err = svc.store.GetLastUsersList(10); err != nil {
+				data.Error = "Cannot fetch last users: " + err.E
