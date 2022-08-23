@@ -50,4 +50,16 @@ func (svc *Service) homePage(box *packr.Box) func(w http.ResponseWriter, r *http
 		// last users
 		{
 			if data.Home.LastUsers, err = svc.store.GetLastUsersList(10); err != nil {
-				data.Error = "Cannot fetch last users: " + err.E
+				data.Error = "Cannot fetch last users: " + err.Error() // FIXME: use slice instead of string
+			}
+			if data.Home.LastUsers != nil {
+				for _, user := range data.Home.LastUsers {
+					user.ApplyDefaults()
+				}
+			}
+		}
+		// end of custom
+		if svc.opts.DevMode {
+			tmpl = loadTemplates(box, "base.tmpl.html", "home.tmpl.html")
+		}
+		d
