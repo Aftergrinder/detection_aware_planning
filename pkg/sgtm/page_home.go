@@ -62,4 +62,10 @@ func (svc *Service) homePage(box *packr.Box) func(w http.ResponseWriter, r *http
 		if svc.opts.DevMode {
 			tmpl = loadTemplates(box, "base.tmpl.html", "home.tmpl.html")
 		}
-		d
+		data.Duration = time.Since(started)
+		if err := tmpl.ExecuteTemplate(w, "base", &data); err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+	}
+}
