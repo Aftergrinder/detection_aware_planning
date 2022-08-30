@@ -12,4 +12,9 @@
           <div class="form-row">
             <div class="col-md-8 mb-3">
               <label for="linkField">🌐 Link to your track</label>
-              <input type="url" name="url" class="form-control{{with .New.URLInvalidMsg}} is-invalid{{end}}" id="linkField" aria-describedby="linkHelp" placeholder="https://..." value="{{.New.URLValue}}" onfocus="this.val
+              <input type="url" name="url" class="form-control{{with .New.URLInvalidMsg}} is-invalid{{end}}" id="linkField" aria-describedby="linkHelp" placeholder="https://..." value="{{.New.URLValue}}" onfocus="this.value = this.value;" autofocus />
+              {{if .New.URLInvalidMsg}}
+                <div class="invalid-feedback">{{.New.URLInvalidMsg | noescape}}</div>
+              {{else}}
+                <small id="linkHelp" class="form-text text-muted">Supported: SoundCloud.</small>
+       
