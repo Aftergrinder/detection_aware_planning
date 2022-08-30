@@ -11,4 +11,5 @@
         <form method="post" enctype="multipart/form-data">
           <div class="form-row">
             <div class="col-md-8 mb-3">
-              <label fo
+              <label for="linkField">🌐 Link to your track</label>
+              <input type="url" name="url" class="form-control{{with .New.URLInvalidMsg}} is-invalid{{end}}" id="linkField" aria-describedby="linkHelp" placeholder="https://..." value="{{.New.URLValue}}" onfocus="this.val
