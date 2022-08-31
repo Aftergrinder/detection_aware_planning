@@ -17,4 +17,9 @@
                 <div class="invalid-feedback">{{.New.URLInvalidMsg | noescape}}</div>
               {{else}}
                 <small id="linkHelp" class="form-text text-muted">Supported: SoundCloud.</small>
-       
+              {{end}}
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="uploadField">🗃 or upload a file</label>
+              <input type="file" name="upload" class="form-control" id="uploadField" data-toggle="tooltip" title="Coming soon">
+              <!--<small id="up
