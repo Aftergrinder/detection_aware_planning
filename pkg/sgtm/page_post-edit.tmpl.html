@@ -31,4 +31,11 @@
           <div class="text-right">
             <!--<button name="submit" type="submit" value="published" class="invisible"></button>
                  <button name="submit" type="submit" value="draft" class="btn btn-light text-muted mb-2 my-3" disabled>Save draft</button>-->
-            <button name="submit" type="submit" value="published" class="btn btn-primary mb-2 my-3">{{":metal:" |
+            <button name="submit" type="submit" value="published" class="btn btn-primary mb-2 my-3">{{":metal:" | emojify}} Update</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        {{if .PostEdit.Post.IsSoundCloud}}
+          <div class="card mb-3 bg-light">
+            <div class="card-header"><span class="fab fa-soundcloud"></span> From SoundCloud <small><a href="{{.PostEdit.Post.Canoni
