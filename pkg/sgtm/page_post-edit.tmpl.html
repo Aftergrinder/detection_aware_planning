@@ -38,4 +38,8 @@
       <div class="col-md-4">
         {{if .PostEdit.Post.IsSoundCloud}}
           <div class="card mb-3 bg-light">
-            <div class="card-header"><span class="fab fa-soundcloud"></span> From SoundCloud <small><a href="{{.PostEdit.Post.Canoni
+            <div class="card-header"><span class="fab fa-soundcloud"></span> From SoundCloud <small><a href="{{.PostEdit.Post.CanonicalURL}}/sync?return=edit">(resync)</a></small></div>
+            <div class="p-2">
+              <div class="form-group">
+                <label for="soundcloudTitle">Title</label>
+                <input type="text" readonly class="form-control-plaintext border" id="soundcloudTitle" value="{{.PostE
