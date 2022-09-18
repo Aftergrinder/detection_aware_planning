@@ -42,4 +42,11 @@
             <div class="p-2">
               <div class="form-group">
                 <label for="soundcloudTitle">Title</label>
-                <input type="text" readonly class="form-control-plaintext border" id="soundcloudTitle" value="{{.PostE
+                <input type="text" readonly class="form-control-plaintext border" id="soundcloudTitle" value="{{.PostEdit.Post.ProviderTitle}}">
+              </div>
+              <div class="form-group">
+                <label for="soundcloudArtwork">Artwork</label>
+                <div>
+                  <img id="soundcloudArtwork" src="{{.PostEdit.Post.ArtworkURL}}" width="80" height="80" class="rounded" />
+                </div>
+     
