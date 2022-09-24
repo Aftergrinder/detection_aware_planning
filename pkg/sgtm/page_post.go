@@ -136,3 +136,179 @@ func (svc *Service) postMaintenancePage(box *packr.Box) func(w http.ResponseWrit
 		post, err := svc.store.GetPostBySlugOrID(postSlug)
 		if err != nil {
 			svc.error404Page(box)(w, r)
+			return
+		}
+		if !data.IsAdmin && data.User.ID != post.Author.ID {
+			svc.error404Page(box)(w, r)
+			return
+		}
+
+		// dl file
+		var dl *Download
+		if shouldDL {
+			var err error
+			dl, err = DownloadPost(post, false)
+			if err != nil {
+				svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+				return
+			}
+			svc.logger.Debug("file downloaded", zap.String("path", dl.Path))
+		}
+
+		// resync soundcloud
+		if shouldResyncSoundCloud {
+			svc.error404Page(box)(w, r)
+			return
+		}
+
+		// extract bpm
+		if shouldExtractBpm {
+			bpm, err := ExtractBPM(dl.Path)
+			if err != nil {
+				svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+				return
+			}
+			svc.logger.Debug("BPM extracted", zap.Float64("bpm", bpm))
+			post.BPM = bpm
+			err = svc.store.UpdatePost(post, &sgtmpb.Post{BPM: post.BPM})
+			if err != nil {
+				svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+				return
+			}
+		}
+
+		if shouldDetectRelationships {
+			// FIXME: support more relationship kinds
+
+			err := svc.store.CheckAndUpdatePost(post)
+			if err != nil {
+				svc.logger.Debug("cannot check and update post", zap.Error(err))
+				svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+				return
+			}
+		}
+
+		switch r.URL.Query().Get("return") {
+		case "no":
+			return
+		case "edit":
+			http.Redirect(w, r, post.CanonicalURL()+"/edit", http.StatusFound)
+		default:
+			http.Redirect(w, r, post.CanonicalURL(), http.StatusFound)
+		}
+		// end of custom
+		if svc.opts.DevMode {
+			tmpl = loadTemplates(box, "base.tmpl.html", "dummy.tmpl.html")
+		}
+		data.Duration = time.Since(started)
+		if err := tmpl.Execute(w, &data); err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+	}
+}
+
+func (svc *Service) postEditPage(box *packr.Box) func(w http.ResponseWriter, r *http.Request) {
+	tmpl := loadTemplates(box, "base.tmpl.html", "post-edit.tmpl.html")
+	return func(w http.ResponseWriter, r *http.Request) {
+		started := time.Now()
+		data, err := svc.newTemplateData(w, r)
+		if err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+		// custom
+		data.PageKind = "post-edit"
+
+		// no anonymous users
+		{
+			if data.User == nil {
+				http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+				return
+			}
+		}
+
+		// fetch post from db
+		{
+			postSlug := chi.URLParam(r, "post_slug")
+			post, err := svc.store.GetPostBySlugOrID(postSlug)
+			if err != nil {
+				svc.error404Page(box)(w, r)
+				return
+			}
+			data.PostEdit.Post = post
+		}
+
+		// only author or admin
+		{
+			if !data.IsAdmin && data.User.ID != data.PostEdit.Post.Author.ID {
+				svc.error404Page(box)(w, r)
+				return
+			}
+		}
+
+		// if POST
+		if r.Method == "POST" {
+			validate := func() map[string]interface{} {
+				if err := r.ParseForm(); err != nil {
+					data.Error = err.Error()
+					return nil
+				}
+
+				// FIXME: blacklist, etc
+				fields := map[string]interface{}{}
+				fields["title"] = strings.TrimSpace(r.Form.Get("title"))
+				fields["body"] = strings.TrimSpace(r.Form.Get("body"))
+				fields["lyrics"] = strings.TrimSpace(r.Form.Get("lyrics"))
+
+				if data.PostEdit.Post.Provider == sgtmpb.Provider_IPFS {
+					fields["title"] = r.Form.Get("title")
+				}
+				return fields
+			}
+			fields := validate()
+			if fields != nil {
+				err = svc.store.UpdatePost(data.PostEdit.Post, fields)
+				if err != nil {
+					svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+					return
+				}
+				svc.logger.Debug("post updated", zap.Any("fields", fields))
+				http.Redirect(w, r, data.PostEdit.Post.CanonicalURL(), http.StatusFound)
+				return
+			}
+		}
+
+		// end of custom
+		if svc.opts.DevMode {
+			tmpl = loadTemplates(box, "base.tmpl.html", "post-edit.tmpl.html")
+		}
+		data.Duration = time.Since(started)
+		if err := tmpl.Execute(w, &data); err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+	}
+}
+
+func (svc *Service) postDownloadPage(box *packr.Box) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		postSlug := chi.URLParam(r, "post_slug")
+		post, err := svc.store.GetPostBySlugOrID(postSlug)
+		if err != nil {
+			svc.error404Page(box)(w, r)
+			return
+		}
+
+		if post.MIMEType != "" {
+			w.Header().Set("Content-Type", post.MIMEType)
+		}
+		reader, err := StreamPost(&svc.ipfs, post)
+		if err != nil {
+			svc.errRenderHTML(w, r, err, http.StatusUnprocessableEntity)
+			return
+		}
+		defer reader.Close()
+		http.ServeContent(w, r, "", time.Time{}, reader)
+	}
+}
