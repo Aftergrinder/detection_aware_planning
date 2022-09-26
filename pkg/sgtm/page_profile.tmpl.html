@@ -1,0 +1,149 @@
+
+{{ template "base" . }}
+
+{{define "head"}}
+  <link rel="canonical" href="https://sgtm.club{{.Profile.User.CanonicalURL}}" />
+  <meta property="og:url" content="https://sgtm.club{{.Profile.User.CanonicalURL}}" />
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:src" property="og:image" itemprop="image primaryImageOfPage" content="https://sgtm.club/_assets/img/logo-1x.png" />
+  <meta property="og:image:width" content="2901" />
+  <meta property="og:image:height" content="2859" />
+  <meta name="twitter:title" property="og:title" itemprop="title name" content="{{.Profile.User.DisplayName}} - SGTM" />
+  <meta name="twitter:description" property="og:description" itemprop="description" content="{{.Profile.User.DisplayName}} on Sounds good to me - SGTM" />
+  <meta name="description" content="{{.Profile.User.DisplayName}} on Sounds good to me - SGTM" />
+
+  <script defer src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <script defer src="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/cal-heatmap/3.3.10/cal-heatmap.css" />
+{{end}}
+
+{{define "content"}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="cal-heatmap"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>🎶 Tracks by {{.Profile.User.DisplayName}}</h2>
+        {{ if .Profile.LastTracks | empty }}
+          <p>No track found.</p>
+          <p><small class="text-muted">This musician is just getting started.</small></p>
+        {{else}}
+          {{ range .Profile.LastTracks }}
+            <div class="card my-2">
+              <div class="media">
+                <a href="{{.CanonicalURL}}"><img src="{{ .ArtworkURL }}" class="p-1 mr-3" width="100" alt="Artwork" /></a>
+                <div class="media-body">
+                  <a href="{{.CanonicalURL}}"><h5 class="mt-0 d-inline-block">{{.SafeTitle}}</h5></a>
+                  <a href="{{.CanonicalURL}}"><small class="text-muted">{{.SortDate | fromUnixNano | prettyAgo}}</small></a>
+                  <div>
+                    {{with .SafeDescription}}<p>{{.}}</p>{{end}}
+                    {{with .TagList}}<div>📁 Tags: {{range .}}<span class="badge badge-secondary">{{.}}</span> {{end}}</div>{{end}}
+                    {{if .Duration}}<div>⏱ Duration: <span data-toggle="tooltip" data-placement="right" title="{{.GoDuration}}">{{.GoDuration | prettyDuration}}</span></div>{{end}}
+                    <!--{{with .DownloadURL}}<div><a href="{{.}}" class="btn">⬇️ Download</a></div>{{end}}-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{ end }}
+        {{end}}
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <div><img src="{{.Profile.User.Avatar}}" width="128" class="mb-3" /></div>
+          {{with .Profile.User.Fullname}}
+            <div><b>{{.}}</b></div>
+          {{end}}
+
+          {{if eq .Profile.User.ID .UserID}}
+            <div class="mb-3">
+              <a href="/settings" class="btn btn-secondary"><span class="fa fa-edit"></span> Edit</a>
+            </div>
+          {{end}}
+
+          <div class="text-muted">@{{.Profile.User.Slug}}</div>
+          {{with .Profile.User.Headline}}
+            <div class="mb-3 mt-3">{{.}}</div>
+          {{end}}
+          {{with .Profile.User.Genres}}
+            <div class="mb-3 mt-3"><span class="fa fa-music"></span> {{.}}</div>
+          {{end}}
+          <div>📆 Joined <span data-toggle="tooltip" data-placement="top" title="{{.Profile.User.CreatedAt | fromUnixNano | prettyDate}}">{{.Profile.User.CreatedAt | fromUnixNano | prettyAgo}}</span></div>
+          <div>🎶 {{.Profile.Stats.Tracks}} tracks</div>
+        </div>
+
+        {{if .Profile.User.HasSomethingAroundTheWeb}}
+        <div class="card mb-3">
+          <div class="card-header"><span class="fa fa-globe"></span> Around the Web</div>
+          <div class="p-2">
+            {{with .Profile.User.Homepage}}
+              <div><a href="{{.}}"><span class="fa fa-house-user"></span> {{.| prettyURL}}</a></div>
+            {{end}}
+            {{with .Profile.User.TwitterUsername}}
+              <div><a href="https://twitter.com/{{.}}"><span class="fab fa-twitter"></span> Twitter</a></div>
+            {{end}}
+            {{with .Profile.User.SoundcloudUsername}}
+              <div><a href="https://soundcloud.com/{{.}}"><span class="fab fa-soundcloud"></span> Soundcloud</a></div>
+            {{end}}
+            {{range $link := .Profile.User.OtherLinksList}}
+              {{with ($link | prettyURL)}}
+                <div>
+                  <a href="{{$link}}"><span class="fa fa-link"></span> {{.}}</a>
+                </div>
+              {{end}}
+            {{end}}
+          </div>
+        </div>
+        {{end}}
+
+        {{with .Profile.User.Bio}}
+          <div class="card mb-3">
+            <div class="card-header"><span class="fa fa-toolbox"></span> Bio</div>
+            <div class="p-2">{{. | markdownify}}</div>
+          </div>
+        {{end}}
+
+        {{with .Profile.User.Goals}}
+          <div class="card mb-3">
+            <div class="card-header"><span class="fa fa-toolbox"></span> Goals</div>
+            <div class="p-2">{{. | markdownify}}</div>
+          </div>
+        {{end}}
+
+        {{with .Profile.User.Inspirations}}
+          <div class="card mb-3">
+            <div class="card-header"><span class="fa fa-toolbox"></span> Inspirations</div>
+            <div class="p-2">{{.}}</div>
+          </div>
+        {{end}}
+
+        {{with .Profile.User.Gears}}
+          <div class="card mb-3">
+            <div class="card-header"><span class="fa fa-toolbox"></span> Gears</div>
+            <div class="p-2">{{. | markdownify}}</div>
+          </div>
+        {{end}}
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+	    var cal = new CalHeatMap();
+	    cal.init({
+	      itemSelector: "#cal-heatmap",
+	      domain: "year",
+	      subDomain: "day",
+        domainGutter: 15,
+	      cellSize: 10,
+	      range: 1,
+        legend: [1,2,3,4],
+        data: {{.Profile.CalendarHeatmap}}
+      });
+    });
+  </script>
+{{end}}

@@ -120,3 +120,33 @@
         </div>
         {{end}}
         <div class="card mb-3 bg-light">
+          <div class="card-header"><span class="fa fa-share-alt"></span> Sharing</div>
+          <div class="p-2">
+            <div><a href="https://twitter.com/intent/tweet?url=https://sgtm.club{{.Post.Post.CanonicalURL}}&text={{.Post.Post.SafeTitle}}+by+{{.Post.Post.Author.DisplayName}}" target="_blank" title="Share on Twitter">
+              <span class="fab fa-twitter" aria-hidden="true"></span> Share on Twitter
+            </a></div>
+            <div><a href="https://www.facebook.com/sharer/sharer.php?u=https://sgtm.club{{.Post.Post.CanonicalURL}}&t={{.Post.Post.SafeTitle}}+by+{{.Post.Post.Author.DisplayName}}" target="_blank" title="Share with Facebook">
+              <span class="fab fa-facebook" aria-hidden="true"></span> Share on facebook
+            </a></div>
+          </div>
+        </div>
+        {{if .IsAdmin}}
+          <div class="card mb-3 bg-danger text-white">
+            <div class="card-header"><span class="fa fa-user-lock"></span> Admin</div>
+            <div class="p-2">
+              <div><a href="{{.Post.Post.CanonicalURL}}/maintenance?extract_bpm=1" class="text-white"><span class="fa fa-sync"></span> Extract BPM</a></div>
+              <div><a href="{{.Post.Post.CanonicalURL}}/maintenance?detect_relationships=1" class="text-white"><span class="fa fa-sync"></span> Detect Relationships</a></div>
+              {{ if .Post.Post.IsSoundCloud }}
+                <div><a href="{{.Post.Post.CanonicalURL}}/maintenance?resync_soundcloud=1" class="text-white"><span class="fa fa-sync"></span> Resync SoundCloud</a></div>
+              {{ end }}
+              {{if not (eq .Post.Post.Author.ID .User.ID)}}
+                <div><a href="{{.Post.Post.CanonicalURL}}/edit" class="text-white"><span class="fa fa-edit"></span> Edit</a></div>
+                <div><a href="{{.Post.Post.URL}}" class="text-white"><span class="fab fa-soundcloud"></span> See original</a></div>
+              {{end}}
+            </div>
+          </div>
+        {{end}}
+      </div>
+    </div>
+  </div>
+{{end}}
