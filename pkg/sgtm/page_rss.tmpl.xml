@@ -4,4 +4,10 @@
         <title>Sounds good to me (SGTM)</title>
         <link>https://sgtm.club/</link>
         <description>Recent content on SGTM.club</description>
-       
+        <generator>homemade</generator>
+        <language>{{.Lang}}</language>
+        <copyright>Manfred Touron 2020</copyright>
+        <atom:link href="https://sgtm.club/rss.xml" rel="self" type="application/rss+xml"/>
+        {{range .RSS.LastTracks}}
+            <item>
+          
