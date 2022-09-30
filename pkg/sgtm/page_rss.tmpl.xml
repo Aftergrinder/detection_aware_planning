@@ -14,4 +14,9 @@
                 <link>https://sgtm.club{{.CanonicalURL}}</link>
                 <pubDate>{{ dateInZone "02 Jan 06 15:04:05 MST" (.SortDate | fromUnixNano) "UTC"}}</pubDate>
                 <guid>https://sgtm.club{{.CanonicalURL}}</guid>
-        
+                <description>{{.URL}}</description>
+            </item>
+        {{end}}
+    </channel>
+</rss>
+{{end}}
