@@ -79,3 +79,84 @@ func (svc *Service) processingLoop(i int) error {
 				entry := entryPtr
 				version := 1
 				for _, migration := range svc.processingWorker.trackMigrations {
+					err := migration(entry, tx)
+					if err != nil {
+						entry.ProcessingError = err.Error()
+						break
+					}
+					entry.ProcessingVersion = int64(version)
+					version++
+				}
+				if err := tx.
+					Model(&entry).
+					Updates(map[string]interface{}{
+						"processing_version": entry.ProcessingVersion,
+						"processing_error":   entry.ProcessingError,
+					}).
+					Error; err != nil {
+					return fmt.Errorf("failed to save processing state: %w", err)
+				}
+			}
+			return nil
+		})
+		if err != nil {
+			return fmt.Errorf("failed to run migration: %w", err)
+		}
+	}
+
+	// TODO: other type migrations
+	// TODO: track maintenance (i.e., daily check if the track still exists on SoundCloud)
+
+	svc.logger.Debug("processing loop ended",
+		zap.Duration("duration", time.Since(before)),
+		zap.Int("loop", i),
+	)
+	return nil
+}
+
+func (svc *Service) setupMigrations() {
+	svc.processingWorker.trackMigrations = []func(*sgtmpb.Post, *gorm.DB) error{
+		// migrate track.Genre to track.Tags
+		func(post *sgtmpb.Post, tx *gorm.DB) error {
+			if post.Tags != "" || post.Genre == "" { // nolint:staticcheck
+				// nothing to do
+				return nil
+			}
+			return tx.Model(post).Updates(map[string]interface{}{
+				"tags":  post.Genre, // nolint:staticcheck
+				"genre": "",
+			}).Error
+		},
+
+		// set SoundCloud provider_title
+		func(post *sgtmpb.Post, tx *gorm.DB) error {
+			if post.GetProvider() != sgtmpb.Provider_SoundCloud || post.ProviderTitle != "" {
+				return nil
+			}
+
+			return tx.Model(post).Updates(map[string]interface{}{
+				"provider_title": post.Title,
+				"title":          "",
+			}).Error
+		},
+
+		/*
+			// FIXME: try downloading the mp3 locally
+			func(post *sgtmpb.Post) error { return fmt.Errorf("not implemented") },
+			// FIXME: compute BPM
+			func(post *sgtmpb.Post) error { return fmt.Errorf("not implemented") },
+			// FIXME: extract thumbnail from file metadata
+			func(post *sgtmpb.Post) error { return fmt.Errorf("not implemented") },
+			// FIXME: compute other info with analysis tools
+			func(post *sgtmpb.Post) error { return fmt.Errorf("not implemented") },
+			// FIXME: create MP3 version for uploaded WAV
+			func(post *sgtmpb.Post) error {
+				if post.Provider != sgtmpb.Provider_IPFS {
+					return nil
+				}
+				// if post.mp3_192_cid == "" && format != mp3 { download; compress; upload }
+				return nil
+			},
+		*/
+	}
+}
