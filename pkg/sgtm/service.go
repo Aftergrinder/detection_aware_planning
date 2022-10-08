@@ -17,4 +17,15 @@ import (
 type Service struct {
 	sgtmpb.UnimplementedWebAPIServer
 
-	store         sg
+	store         sgtmstore.Store
+	logger        *zap.Logger
+	opts          Opts
+	ctx           context.Context
+	cancel        func()
+	StartedAt     time.Time
+	errRenderHTML func(w http.ResponseWriter, r *http.Request, err error, status int)
+
+	// drivers
+
+	discord          discordDriver
+	server  
