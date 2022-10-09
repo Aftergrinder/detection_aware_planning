@@ -39,4 +39,15 @@ func New(store sgtmstore.Store, opts Opts) (*Service, error) {
 	if err := opts.applyDefaults(); err != nil {
 		return nil, err
 	}
-	fmt.Fpri
+	fmt.Fprintln(os.Stderr, banner.Inline("sgtm"))
+	ctx, cancel := context.WithCancel(opts.Context)
+	svc := Service{
+		store:     store,
+		logger:    opts.Logger,
+		opts:      opts,
+		ctx:       ctx,
+		cancel:    cancel,
+		StartedAt: time.Now(),
+		ipfs:      ipfsWrapper{api: opts.IPFSAPI},
+	}
+	svc.logger.Info("service initia
