@@ -28,4 +28,15 @@ type Service struct {
 	// drivers
 
 	discord          discordDriver
-	server  
+	server           serverDriver
+	processingWorker processingWorkerDriver
+	ipfs             ipfsWrapper
+	unittest         bool
+}
+
+// New constructor that initializes new Service
+func New(store sgtmstore.Store, opts Opts) (*Service, error) {
+	if err := opts.applyDefaults(); err != nil {
+		return nil, err
+	}
+	fmt.Fpri
