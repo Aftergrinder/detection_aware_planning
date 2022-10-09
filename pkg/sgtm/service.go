@@ -50,4 +50,14 @@ func New(store sgtmstore.Store, opts Opts) (*Service, error) {
 		StartedAt: time.Now(),
 		ipfs:      ipfsWrapper{api: opts.IPFSAPI},
 	}
-	svc.logger.Info("service initia
+	svc.logger.Info("service initialized", zap.Bool("dev-mode", opts.DevMode))
+	return &svc, nil
+}
+
+func (svc *Service) Close() {
+	svc.logger.Debug("closing service")
+	svc.cancel()
+	if !svc.unittest {
+		fmt.Fprintln(os.Stderr, banner.Inline("kthxbie"))
+	}
+}
