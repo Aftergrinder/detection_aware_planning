@@ -108,3 +108,106 @@ func loadTemplates(box *packr.Box, filenames ...string) *template.Template {
 	funcmap["newline"] = func() string {
 		return "\n"
 	}
+	funcmap["prettyAgo"] = func(input time.Time) string {
+		return humanize.RelTime(input, time.Now(), "ago", "in the future(!?)")
+	}
+	funcmap["prettyDuration"] = func(input time.Duration) string {
+		input = input.Round(time.Second)
+		str := durafmt.Parse(input).LimitFirstN(2).String()
+		str = strings.ReplaceAll(str, " ", "")
+		str = strings.ReplaceAll(str, "minutes", "m")
+		str = strings.ReplaceAll(str, "minute", "m")
+		str = strings.ReplaceAll(str, "hours", "h")
+		str = strings.ReplaceAll(str, "hour", "h")
+		str = strings.ReplaceAll(str, "seconds", "s")
+		str = strings.ReplaceAll(str, "second", "s")
+
+		return str
+	}
+	funcmap["prettyDate"] = func(input time.Time) string {
+		return input.Format("2006-01-02 15:04")
+	}
+	funcmap["noescape"] = func(str string) template.HTML {
+		return template.HTML(str)
+	}
+	funcmap["stripTags"] = striptags.StripTags
+	funcmap["urlencode"] = url.PathEscape
+	funcmap["plus1"] = func(x int) int {
+		return x + 1
+	}
+	tmpl, err := template.New(templateName).Funcs(funcmap).Parse(allInOne)
+	if err != nil {
+		panic(err)
+	}
+	return tmpl
+}
+
+type templateData struct {
+	// common
+
+	PageKind         string
+	Title            string
+	Date             time.Time
+	JWTToken         string
+	Claims           *jwtClaims
+	Duration         time.Duration
+	Opts             Opts
+	Lang             string
+	IsAdmin          bool
+	User             *sgtmpb.User
+	UserID           int64
+	Error            string
+	Service          *Service      `json:"-"`
+	Request          *http.Request `json:"-"`
+	ReleaseVersion   string
+	ReleaseVcsRef    string
+	ReleaseBuildDate string
+
+	// specific
+
+	RSS struct {
+		LastTracks []*sgtmpb.Post
+	}
+	Home struct {
+		LastTracks []*sgtmpb.Post
+		LastUsers  []*sgtmpb.User
+	} `json:"Home,omitempty"`
+	Settings struct {
+	} `json:"Settings,omitempty"`
+	Profile struct {
+		User       *sgtmpb.User
+		LastTracks []*sgtmpb.Post
+		Stats      struct {
+			Tracks int64
+			// Drafts int64
+		}
+		CalendarHeatmap map[int64]int64
+	} `json:"Profile,omitempty"`
+	Open struct {
+		Count struct {
+			Users         int64
+			Tracks        int64
+			TrackDrafts   int64
+			Comments      int64
+			PostViews     int64
+			Logins        int64
+			HomeViews     int64
+			OpenViews     int64
+			ProfileViews  int64
+			TotalDuration time.Duration
+		}
+		UploadsByWeekday []int64
+		LastActivities   []*sgtmpb.Post
+	} `json:"Open,omitempty"`
+	New struct {
+		URLValue      string
+		URLInvalidMsg string
+	} `json:"New,omitempty"`
+	Post struct {
+		Post     *sgtmpb.Post
+		Comments []*sgtmpb.Post
+	} `json:"Post,omitempty"`
+	PostEdit struct {
+		Post *sgtmpb.Post
+	} `json:"PostEdit,omitempty"`
+}
