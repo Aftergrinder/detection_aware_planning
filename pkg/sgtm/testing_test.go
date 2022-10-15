@@ -47,4 +47,5 @@ func TestingLogger(t *testing.T) *zap.Logger {
 	if *debugFlag {
 		return zapconfig.Configurator{}.MustBuild()
 	}
-	return zap.N
+	return zap.NewNop()
+}
