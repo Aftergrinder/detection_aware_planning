@@ -22,4 +22,17 @@ func TestingService(t *testing.T) (Service, func()) {
 	opts.applyDefaults()
 	store := sgtmstore.TestingStore(t, opts.Logger)
 	ctx, cancel := context.WithCancel(opts.Context)
-	svc := Servic
+	svc := Service{
+		store:     store,
+		logger:    opts.Logger,
+		opts:      opts,
+		ctx:       ctx,
+		cancel:    cancel,
+		StartedAt: time.Now(),
+		ipfs:      ipfsWrapper{api: opts.IPFSAPI},
+		unittest:  true,
+	}
+	gr, err := svc.prepareStartServer()
+	require.NoError(t, err)
+	go gr.Run()
+	
