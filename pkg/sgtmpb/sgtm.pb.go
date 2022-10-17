@@ -125,3 +125,284 @@ func (x Provider) Number() protoreflect.EnumNumber {
 // Deprecated: Use Provider.Descriptor instead.
 func (Provider) EnumDescriptor() ([]byte, []int) {
 	return file_sgtm_proto_rawDescGZIP(), []int{1}
+}
+
+type Post_SoundCloudKind int32
+
+const (
+	Post_UnknownSoundCloudKind Post_SoundCloudKind = 0
+	Post_SoundCloudTrack       Post_SoundCloudKind = 1 //SoundCloudPlaylist = 2;
+)
+
+// Enum value maps for Post_SoundCloudKind.
+var (
+	Post_SoundCloudKind_name = map[int32]string{
+		0: "UnknownSoundCloudKind",
+		1: "SoundCloudTrack",
+	}
+	Post_SoundCloudKind_value = map[string]int32{
+		"UnknownSoundCloudKind": 0,
+		"SoundCloudTrack":       1,
+	}
+)
+
+func (x Post_SoundCloudKind) Enum() *Post_SoundCloudKind {
+	p := new(Post_SoundCloudKind)
+	*p = x
+	return p
+}
+
+func (x Post_SoundCloudKind) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Post_SoundCloudKind) Descriptor() protoreflect.EnumDescriptor {
+	return file_sgtm_proto_enumTypes[2].Descriptor()
+}
+
+func (Post_SoundCloudKind) Type() protoreflect.EnumType {
+	return &file_sgtm_proto_enumTypes[2]
+}
+
+func (x Post_SoundCloudKind) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Post_SoundCloudKind.Descriptor instead.
+func (Post_SoundCloudKind) EnumDescriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{8, 0}
+}
+
+type Post_Kind int32
+
+const (
+	Post_UnknownKind            Post_Kind = 0
+	Post_TrackKind              Post_Kind = 1
+	Post_LoginKind              Post_Kind = 2
+	Post_RegisterKind           Post_Kind = 3
+	Post_LinkDiscordAccountKind Post_Kind = 4
+	Post_ViewProfileKind        Post_Kind = 5
+	Post_ViewPostKind           Post_Kind = 6
+	Post_ViewOpenKind           Post_Kind = 7
+	Post_ViewHomeKind           Post_Kind = 8
+	Post_CommentKind            Post_Kind = 9
+)
+
+// Enum value maps for Post_Kind.
+var (
+	Post_Kind_name = map[int32]string{
+		0: "UnknownKind",
+		1: "TrackKind",
+		2: "LoginKind",
+		3: "RegisterKind",
+		4: "LinkDiscordAccountKind",
+		5: "ViewProfileKind",
+		6: "ViewPostKind",
+		7: "ViewOpenKind",
+		8: "ViewHomeKind",
+		9: "CommentKind",
+	}
+	Post_Kind_value = map[string]int32{
+		"UnknownKind":            0,
+		"TrackKind":              1,
+		"LoginKind":              2,
+		"RegisterKind":           3,
+		"LinkDiscordAccountKind": 4,
+		"ViewProfileKind":        5,
+		"ViewPostKind":           6,
+		"ViewOpenKind":           7,
+		"ViewHomeKind":           8,
+		"CommentKind":            9,
+	}
+)
+
+func (x Post_Kind) Enum() *Post_Kind {
+	p := new(Post_Kind)
+	*p = x
+	return p
+}
+
+func (x Post_Kind) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Post_Kind) Descriptor() protoreflect.EnumDescriptor {
+	return file_sgtm_proto_enumTypes[3].Descriptor()
+}
+
+func (Post_Kind) Type() protoreflect.EnumType {
+	return &file_sgtm_proto_enumTypes[3]
+}
+
+func (x Post_Kind) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Post_Kind.Descriptor instead.
+func (Post_Kind) EnumDescriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{8, 1}
+}
+
+type Relationship_Kind int32
+
+const (
+	Relationship_UnknownKind           Relationship_Kind = 0
+	Relationship_FeaturingUserKind     Relationship_Kind = 1
+	Relationship_RemixOfTrackKind      Relationship_Kind = 2
+	Relationship_NewVersionOfTrackKind Relationship_Kind = 3
+	Relationship_InspiredByTrackKind   Relationship_Kind = 4
+	Relationship_RemixOfUserKind       Relationship_Kind = 5
+)
+
+// Enum value maps for Relationship_Kind.
+var (
+	Relationship_Kind_name = map[int32]string{
+		0: "UnknownKind",
+		1: "FeaturingUserKind",
+		2: "RemixOfTrackKind",
+		3: "NewVersionOfTrackKind",
+		4: "InspiredByTrackKind",
+		5: "RemixOfUserKind",
+	}
+	Relationship_Kind_value = map[string]int32{
+		"UnknownKind":           0,
+		"FeaturingUserKind":     1,
+		"RemixOfTrackKind":      2,
+		"NewVersionOfTrackKind": 3,
+		"InspiredByTrackKind":   4,
+		"RemixOfUserKind":       5,
+	}
+)
+
+func (x Relationship_Kind) Enum() *Relationship_Kind {
+	p := new(Relationship_Kind)
+	*p = x
+	return p
+}
+
+func (x Relationship_Kind) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Relationship_Kind) Descriptor() protoreflect.EnumDescriptor {
+	return file_sgtm_proto_enumTypes[4].Descriptor()
+}
+
+func (Relationship_Kind) Type() protoreflect.EnumType {
+	return &file_sgtm_proto_enumTypes[4]
+}
+
+func (x Relationship_Kind) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Relationship_Kind.Descriptor instead.
+func (Relationship_Kind) EnumDescriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{9, 0}
+}
+
+type Ping struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Ping) Reset() {
+	*x = Ping{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Ping) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ping) ProtoMessage() {}
+
+func (x *Ping) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ping.ProtoReflect.Descriptor instead.
+func (*Ping) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{0}
+}
+
+type Status struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Status) Reset() {
+	*x = Status{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Status) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Status) ProtoMessage() {}
+
+func (x *Status) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Status.ProtoReflect.Descriptor instead.
+func (*Status) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{1}
+}
+
+type Register struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Register) Reset() {
+	*x = Register{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Register) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Register) ProtoMessage() {}
+
+func (x *Register) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
