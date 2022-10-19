@@ -690,3 +690,276 @@ func (x *User) GetLastname() string {
 	}
 	return ""
 }
+
+func (x *User) GetLocale() string {
+	if x != nil {
+		return x.Locale
+	}
+	return ""
+}
+
+func (x *User) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *User) GetDiscordID() string {
+	if x != nil {
+		return x.DiscordID
+	}
+	return ""
+}
+
+func (x *User) GetDiscordUsername() string {
+	if x != nil {
+		return x.DiscordUsername
+	}
+	return ""
+}
+
+func (x *User) GetHeadline() string {
+	if x != nil {
+		return x.Headline
+	}
+	return ""
+}
+
+func (x *User) GetBio() string {
+	if x != nil {
+		return x.Bio
+	}
+	return ""
+}
+
+func (x *User) GetInspirations() string {
+	if x != nil {
+		return x.Inspirations
+	}
+	return ""
+}
+
+func (x *User) GetGears() string {
+	if x != nil {
+		return x.Gears
+	}
+	return ""
+}
+
+func (x *User) GetGenres() string {
+	if x != nil {
+		return x.Genres
+	}
+	return ""
+}
+
+func (x *User) GetLocation() string {
+	if x != nil {
+		return x.Location
+	}
+	return ""
+}
+
+func (x *User) GetTwitterUsername() string {
+	if x != nil {
+		return x.TwitterUsername
+	}
+	return ""
+}
+
+func (x *User) GetHomepage() string {
+	if x != nil {
+		return x.Homepage
+	}
+	return ""
+}
+
+func (x *User) GetOtherLinks() string {
+	if x != nil {
+		return x.OtherLinks
+	}
+	return ""
+}
+
+func (x *User) GetGoals() string {
+	if x != nil {
+		return x.Goals
+	}
+	return ""
+}
+
+func (x *User) GetSoundcloudUsername() string {
+	if x != nil {
+		return x.SoundcloudUsername
+	}
+	return ""
+}
+
+func (x *User) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *User) GetProcessingVersion() int64 {
+	if x != nil {
+		return x.ProcessingVersion
+	}
+	return 0
+}
+
+func (x *User) GetProcessingError() string {
+	if x != nil {
+		return x.ProcessingError
+	}
+	return ""
+}
+
+func (x *User) GetRecentPosts() []*Post {
+	if x != nil {
+		return x.RecentPosts
+	}
+	return nil
+}
+
+func (x *User) GetRelationshipsAsSource() []*Relationship {
+	if x != nil {
+		return x.RelationshipsAsSource
+	}
+	return nil
+}
+
+func (x *User) GetRelationshipsAsTarget() []*Relationship {
+	if x != nil {
+		return x.RelationshipsAsTarget
+	}
+	return nil
+}
+
+type Post struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ID                int64      `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" gorm:"primary_key"`
+	CreatedAt         int64      `protobuf:"varint,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" gorm:"autocreatetime:nano"`
+	UpdatedAt         int64      `protobuf:"varint,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" gorm:"autoupdatetime:nano"`
+	DeletedAt         int64      `protobuf:"varint,4,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	Author            *User      `protobuf:"bytes,10,opt,name=author,proto3" json:"author,omitempty"`
+	AuthorID          int64      `protobuf:"varint,11,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	Title             string     `protobuf:"bytes,12,opt,name=title,proto3" json:"title,omitempty"`
+	Slug              string     `protobuf:"bytes,13,opt,name=slug,proto3" json:"slug,omitempty"`
+	Kind              Post_Kind  `protobuf:"varint,14,opt,name=kind,proto3,enum=sgtm.Post_Kind" json:"kind,omitempty"`
+	Visibility        Visibility `protobuf:"varint,15,opt,name=visibility,proto3,enum=sgtm.Visibility" json:"visibility,omitempty"`
+	URL               string     `protobuf:"bytes,16,opt,name=url,proto3" json:"url,omitempty"`
+	Provider          Provider   `protobuf:"varint,17,opt,name=provider,proto3,enum=sgtm.Provider" json:"provider,omitempty"`
+	Body              string     `protobuf:"bytes,18,opt,name=body,proto3" json:"body,omitempty"`
+	SortDate          int64      `protobuf:"varint,19,opt,name=sort_date,json=sortDate,proto3" json:"sort_date,omitempty"`
+	ProcessingVersion int64      `protobuf:"varint,20,opt,name=processing_version,json=processingVersion,proto3" json:"processing_version,omitempty"`
+	ProcessingError   string     `protobuf:"bytes,21,opt,name=processing_error,json=processingError,proto3" json:"processing_error,omitempty"`
+	// Deprecated: Do not use.
+	Genre                 string              `protobuf:"bytes,40,opt,name=genre,proto3" json:"genre,omitempty"` // replaced by 'tags'
+	Duration              uint64              `protobuf:"varint,41,opt,name=duration,proto3" json:"duration,omitempty"`
+	ArtworkURL            string              `protobuf:"bytes,42,opt,name=artwork_url,json=artworkUrl,proto3" json:"artwork_url,omitempty"`
+	BPM                   float64             `protobuf:"fixed64,43,opt,name=bpm,proto3" json:"bpm,omitempty"`
+	KeySignature          string              `protobuf:"bytes,44,opt,name=key_signature,json=keySignature,proto3" json:"key_signature,omitempty"`
+	ISRC                  string              `protobuf:"bytes,45,opt,name=isrc,proto3" json:"isrc,omitempty"`
+	ProviderTitle         string              `protobuf:"bytes,53,opt,name=provider_title,json=providerTitle,proto3" json:"provider_title,omitempty"`
+	ProviderDescription   string              `protobuf:"bytes,46,opt,name=provider_description,json=providerDescription,proto3" json:"provider_description,omitempty"`
+	DownloadURL           string              `protobuf:"bytes,47,opt,name=provider_download_url,json=providerDownloadUrl,proto3" json:"provider_download_url,omitempty"`
+	ProviderCreatedAt     int64               `protobuf:"varint,48,opt,name=provider_created_at,json=providerCreatedAt,proto3" json:"provider_created_at,omitempty"`
+	ProviderUpdatedAt     int64               `protobuf:"varint,49,opt,name=provider_updated_at,json=providerUpdatedAt,proto3" json:"provider_updated_at,omitempty"`
+	ProviderMetadata      string              `protobuf:"bytes,50,opt,name=provider_metadata,json=providerMetadata,proto3" json:"provider_metadata,omitempty"`
+	Tags                  string              `protobuf:"bytes,51,opt,name=tags,proto3" json:"tags,omitempty"` // comma separated list of tags
+	Lyrics                string              `protobuf:"bytes,52,opt,name=lyrics,proto3" json:"lyrics,omitempty"`
+	SoundCloudSecretToken string              `protobuf:"bytes,80,opt,name=soundcloud_secret_token,json=soundcloudSecretToken,proto3" json:"soundcloud_secret_token,omitempty"`
+	SoundCloudID          uint64              `protobuf:"varint,81,opt,name=soundcloud_id,json=soundcloudId,proto3" json:"soundcloud_id,omitempty"`
+	SoundCloudKind        Post_SoundCloudKind `protobuf:"varint,83,opt,name=soundcloud_kind,json=soundcloudKind,proto3,enum=sgtm.Post_SoundCloudKind" json:"soundcloud_kind,omitempty"`
+	IPFSCID               string              `protobuf:"bytes,90,opt,name=ipfs_cid,json=ipfsCid,proto3" json:"ipfs_cid,omitempty"`
+	MIMEType              string              `protobuf:"bytes,91,opt,name=mime_type,json=mimeType,proto3" json:"mime_type,omitempty"`
+	SizeBytes             int64               `protobuf:"varint,92,opt,name=size_bytes,json=sizeBytes,proto3" json:"size_bytes,omitempty"`
+	FileExtension         string              `protobuf:"bytes,93,opt,name=file_extension,json=fileExtension,proto3" json:"file_extension,omitempty"`
+	AttachmentFilename    string              `protobuf:"bytes,94,opt,name=attachment_filename,json=attachmentFilename,proto3" json:"attachment_filename,omitempty"`
+	TargetUserID          int64               `protobuf:"varint,101,opt,name=target_user_id,json=targetUserId,proto3" json:"target_user_id,omitempty"`
+	TargetUser            *User               `protobuf:"bytes,102,opt,name=target_user,json=targetUser,proto3" json:"target_user,omitempty"`
+	TargetPostID          int64               `protobuf:"varint,103,opt,name=target_post_id,json=targetPostId,proto3" json:"target_post_id,omitempty"`
+	TargetPost            *Post               `protobuf:"bytes,104,opt,name=target_post,json=targetPost,proto3" json:"target_post,omitempty"`
+	TargetMetadata        string              `protobuf:"bytes,105,opt,name=target_metadata,json=targetMetadata,proto3" json:"target_metadata,omitempty"`
+	RelationshipsAsSource []*Relationship     `protobuf:"bytes,110,rep,name=relationships_as_source,json=relationshipsAsSource,proto3" json:"relationships_as_source,omitempty" gorm:"foreignKey:SourcePostID"`
+	RelationshipsAsTarget []*Relationship     `protobuf:"bytes,111,rep,name=relationships_as_target,json=relationshipsAsTarget,proto3" json:"relationships_as_target,omitempty" gorm:"foreignKey:TargetPostID"`
+}
+
+func (x *Post) Reset() {
+	*x = Post{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Post) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Post) ProtoMessage() {}
+
+func (x *Post) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Post.ProtoReflect.Descriptor instead.
+func (*Post) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Post) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *Post) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *Post) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
+func (x *Post) GetDeletedAt() int64 {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return 0
+}
+
+func (x *Post) GetAuthor() *User {
+	if x != nil {
+		return x.Author
+	}
+	return nil
+}
+
+func (x *Post) GetAuthorID() int64 {
+	if x != nil {
+		return x.AuthorID
+	}
+	return 0
