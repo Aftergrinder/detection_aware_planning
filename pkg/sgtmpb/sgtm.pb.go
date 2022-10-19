@@ -406,3 +406,287 @@ func (x *Register) ProtoReflect() protoreflect.Message {
 			ms.StoreMessageInfo(mi)
 		}
 		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Register.ProtoReflect.Descriptor instead.
+func (*Register) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{2}
+}
+
+type UserList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UserList) Reset() {
+	*x = UserList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserList) ProtoMessage() {}
+
+func (x *UserList) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserList.ProtoReflect.Descriptor instead.
+func (*UserList) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{3}
+}
+
+type PostList struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PostList) Reset() {
+	*x = PostList{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostList) ProtoMessage() {}
+
+func (x *PostList) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostList.ProtoReflect.Descriptor instead.
+func (*PostList) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{4}
+}
+
+type PostSync struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PostSync) Reset() {
+	*x = PostSync{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostSync) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostSync) ProtoMessage() {}
+
+func (x *PostSync) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostSync.ProtoReflect.Descriptor instead.
+func (*PostSync) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{5}
+}
+
+type Me struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Me) Reset() {
+	*x = Me{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Me) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Me) ProtoMessage() {}
+
+func (x *Me) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Me.ProtoReflect.Descriptor instead.
+func (*Me) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{6}
+}
+
+type User struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ID                    int64           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" gorm:"primary_key"`
+	CreatedAt             int64           `protobuf:"varint,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" gorm:"autocreatetime:nano"`
+	UpdatedAt             int64           `protobuf:"varint,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" gorm:"autoupdatetime:nano"`
+	DeletedAt             int64           `protobuf:"varint,4,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	Email                 string          `protobuf:"bytes,10,opt,name=email,proto3" json:"email,omitempty" gorm:"size:255;not null;index:,unique"`
+	Slug                  string          `protobuf:"bytes,11,opt,name=slug,proto3" json:"slug,omitempty" gorm:"size:32;not null;default:''"`
+	Firstname             string          `protobuf:"bytes,12,opt,name=firstname,proto3" json:"firstname,omitempty" gorm:"size:255;not null;default:''"`
+	Lastname              string          `protobuf:"bytes,13,opt,name=lastname,proto3" json:"lastname,omitempty" gorm:"size:255;not null;default:''"`
+	Locale                string          `protobuf:"bytes,14,opt,name=locale,proto3" json:"locale,omitempty" gorm:"size:32;not null;default:''"`
+	Avatar                string          `protobuf:"bytes,15,opt,name=avatar,proto3" json:"avatar,omitempty" gorm:"size:255;not null;default:''"`
+	DiscordID             string          `protobuf:"bytes,16,opt,name=discord_id,json=discordId,proto3" json:"discord_id,omitempty" gorm:"size:255;not null;default:''"`
+	DiscordUsername       string          `protobuf:"bytes,17,opt,name=discord_username,json=discordUsername,proto3" json:"discord_username,omitempty" gorm:"size:255;not null;default:''"`
+	Headline              string          `protobuf:"bytes,18,opt,name=headline,proto3" json:"headline,omitempty"`
+	Bio                   string          `protobuf:"bytes,19,opt,name=bio,proto3" json:"bio,omitempty"`
+	Inspirations          string          `protobuf:"bytes,20,opt,name=inspirations,proto3" json:"inspirations,omitempty"`
+	Gears                 string          `protobuf:"bytes,21,opt,name=gears,proto3" json:"gears,omitempty"`
+	Genres                string          `protobuf:"bytes,22,opt,name=genres,proto3" json:"genres,omitempty"`
+	Location              string          `protobuf:"bytes,23,opt,name=location,proto3" json:"location,omitempty"`
+	TwitterUsername       string          `protobuf:"bytes,24,opt,name=twitter_username,json=twitterUsername,proto3" json:"twitter_username,omitempty"`
+	Homepage              string          `protobuf:"bytes,25,opt,name=homepage,proto3" json:"homepage,omitempty"`
+	OtherLinks            string          `protobuf:"bytes,26,opt,name=other_links,json=otherLinks,proto3" json:"other_links,omitempty"`
+	Goals                 string          `protobuf:"bytes,27,opt,name=goals,proto3" json:"goals,omitempty"`
+	SoundcloudUsername    string          `protobuf:"bytes,28,opt,name=soundcloud_username,json=soundcloudUsername,proto3" json:"soundcloud_username,omitempty"`
+	Role                  string          `protobuf:"bytes,29,opt,name=role,proto3" json:"role,omitempty"`
+	ProcessingVersion     int64           `protobuf:"varint,30,opt,name=processing_version,json=processingVersion,proto3" json:"processing_version,omitempty"`
+	ProcessingError       string          `protobuf:"bytes,31,opt,name=processing_error,json=processingError,proto3" json:"processing_error,omitempty"`
+	RecentPosts           []*Post         `protobuf:"bytes,50,rep,name=recent_posts,json=recentPosts,proto3" json:"recent_posts,omitempty" gorm:"foreignkey:AuthorID;PRELOAD:false"`
+	RelationshipsAsSource []*Relationship `protobuf:"bytes,51,rep,name=relationships_as_source,json=relationshipsAsSource,proto3" json:"relationships_as_source,omitempty" gorm:"foreignKey:SourceUserID"`
+	RelationshipsAsTarget []*Relationship `protobuf:"bytes,52,rep,name=relationships_as_target,json=relationshipsAsTarget,proto3" json:"relationships_as_target,omitempty" gorm:"foreignKey:TargetUserID"`
+}
+
+func (x *User) Reset() {
+	*x = User{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*User) ProtoMessage() {}
+
+func (x *User) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *User) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *User) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *User) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
+func (x *User) GetDeletedAt() int64 {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return 0
+}
+
+func (x *User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *User) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *User) GetFirstname() string {
+	if x != nil {
+		return x.Firstname
+	}
+	return ""
+}
+
+func (x *User) GetLastname() string {
+	if x != nil {
+		return x.Lastname
+	}
+	return ""
+}
