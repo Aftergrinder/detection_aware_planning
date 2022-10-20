@@ -963,3 +963,300 @@ func (x *Post) GetAuthorID() int64 {
 		return x.AuthorID
 	}
 	return 0
+}
+
+func (x *Post) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Post) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *Post) GetKind() Post_Kind {
+	if x != nil {
+		return x.Kind
+	}
+	return Post_UnknownKind
+}
+
+func (x *Post) GetVisibility() Visibility {
+	if x != nil {
+		return x.Visibility
+	}
+	return Visibility_UnknownVisibility
+}
+
+func (x *Post) GetURL() string {
+	if x != nil {
+		return x.URL
+	}
+	return ""
+}
+
+func (x *Post) GetProvider() Provider {
+	if x != nil {
+		return x.Provider
+	}
+	return Provider_UnknownProvider
+}
+
+func (x *Post) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
+func (x *Post) GetSortDate() int64 {
+	if x != nil {
+		return x.SortDate
+	}
+	return 0
+}
+
+func (x *Post) GetProcessingVersion() int64 {
+	if x != nil {
+		return x.ProcessingVersion
+	}
+	return 0
+}
+
+func (x *Post) GetProcessingError() string {
+	if x != nil {
+		return x.ProcessingError
+	}
+	return ""
+}
+
+// Deprecated: Do not use.
+func (x *Post) GetGenre() string {
+	if x != nil {
+		return x.Genre
+	}
+	return ""
+}
+
+func (x *Post) GetDuration() uint64 {
+	if x != nil {
+		return x.Duration
+	}
+	return 0
+}
+
+func (x *Post) GetArtworkURL() string {
+	if x != nil {
+		return x.ArtworkURL
+	}
+	return ""
+}
+
+func (x *Post) GetBPM() float64 {
+	if x != nil {
+		return x.BPM
+	}
+	return 0
+}
+
+func (x *Post) GetKeySignature() string {
+	if x != nil {
+		return x.KeySignature
+	}
+	return ""
+}
+
+func (x *Post) GetISRC() string {
+	if x != nil {
+		return x.ISRC
+	}
+	return ""
+}
+
+func (x *Post) GetProviderTitle() string {
+	if x != nil {
+		return x.ProviderTitle
+	}
+	return ""
+}
+
+func (x *Post) GetProviderDescription() string {
+	if x != nil {
+		return x.ProviderDescription
+	}
+	return ""
+}
+
+func (x *Post) GetDownloadURL() string {
+	if x != nil {
+		return x.DownloadURL
+	}
+	return ""
+}
+
+func (x *Post) GetProviderCreatedAt() int64 {
+	if x != nil {
+		return x.ProviderCreatedAt
+	}
+	return 0
+}
+
+func (x *Post) GetProviderUpdatedAt() int64 {
+	if x != nil {
+		return x.ProviderUpdatedAt
+	}
+	return 0
+}
+
+func (x *Post) GetProviderMetadata() string {
+	if x != nil {
+		return x.ProviderMetadata
+	}
+	return ""
+}
+
+func (x *Post) GetTags() string {
+	if x != nil {
+		return x.Tags
+	}
+	return ""
+}
+
+func (x *Post) GetLyrics() string {
+	if x != nil {
+		return x.Lyrics
+	}
+	return ""
+}
+
+func (x *Post) GetSoundCloudSecretToken() string {
+	if x != nil {
+		return x.SoundCloudSecretToken
+	}
+	return ""
+}
+
+func (x *Post) GetSoundCloudID() uint64 {
+	if x != nil {
+		return x.SoundCloudID
+	}
+	return 0
+}
+
+func (x *Post) GetSoundCloudKind() Post_SoundCloudKind {
+	if x != nil {
+		return x.SoundCloudKind
+	}
+	return Post_UnknownSoundCloudKind
+}
+
+func (x *Post) GetIPFSCID() string {
+	if x != nil {
+		return x.IPFSCID
+	}
+	return ""
+}
+
+func (x *Post) GetMIMEType() string {
+	if x != nil {
+		return x.MIMEType
+	}
+	return ""
+}
+
+func (x *Post) GetSizeBytes() int64 {
+	if x != nil {
+		return x.SizeBytes
+	}
+	return 0
+}
+
+func (x *Post) GetFileExtension() string {
+	if x != nil {
+		return x.FileExtension
+	}
+	return ""
+}
+
+func (x *Post) GetAttachmentFilename() string {
+	if x != nil {
+		return x.AttachmentFilename
+	}
+	return ""
+}
+
+func (x *Post) GetTargetUserID() int64 {
+	if x != nil {
+		return x.TargetUserID
+	}
+	return 0
+}
+
+func (x *Post) GetTargetUser() *User {
+	if x != nil {
+		return x.TargetUser
+	}
+	return nil
+}
+
+func (x *Post) GetTargetPostID() int64 {
+	if x != nil {
+		return x.TargetPostID
+	}
+	return 0
+}
+
+func (x *Post) GetTargetPost() *Post {
+	if x != nil {
+		return x.TargetPost
+	}
+	return nil
+}
+
+func (x *Post) GetTargetMetadata() string {
+	if x != nil {
+		return x.TargetMetadata
+	}
+	return ""
+}
+
+func (x *Post) GetRelationshipsAsSource() []*Relationship {
+	if x != nil {
+		return x.RelationshipsAsSource
+	}
+	return nil
+}
+
+func (x *Post) GetRelationshipsAsTarget() []*Relationship {
+	if x != nil {
+		return x.RelationshipsAsTarget
+	}
+	return nil
+}
+
+type Relationship struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ID           int64             `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" gorm:"primary_key"`
+	CreatedAt    int64             `protobuf:"varint,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" gorm:"autocreatetime:nano"`
+	UpdatedAt    int64             `protobuf:"varint,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" gorm:"autoupdatetime:nano"`
+	DeletedAt    int64             `protobuf:"varint,4,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"`
+	Kind         Relationship_Kind `protobuf:"varint,10,opt,name=kind,proto3,enum=sgtm.Relationship_Kind" json:"kind,omitempty"`
+	SourcePostID int64             `protobuf:"varint,11,opt,name=source_post_id,json=sourcePostId,proto3" json:"source_post_id,omitempty"`
+	SourcePost   *Post             `protobuf:"bytes,12,opt,name=source_post,json=sourcePost,proto3" json:"source_post,omitempty"`
+	TargetPostID int64             `protobuf:"varint,13,opt,name=target_post_id,json=targetPostId,proto3" json:"target_post_id,omitempty"`
+	TargetPost   *Post             `protobuf:"bytes,14,opt,name=target_post,json=targetPost,proto3" json:"target_post,omitempty"`
+	SourceUserID int64             `protobuf:"varint,15,opt,name=source_user_id,json=sourceUserId,proto3" json:"source_user_id,omitempty"`
+	SourceUser   *User             `protobuf:"bytes,16,opt,name=source_user,json=sourceUser,proto3" json:"source_user,omitempty"`
+	TargetUserID int64             `protobuf:"varint,17,opt,name=target_user_id,json=targetUserId,proto3" json:"target_user_id,omitempty"`
+	TargetUser   *User             `protobuf:"bytes,18,opt,name=target_user,json=targetUser,proto3" json:"target_user,omitempty"`
+	SourceRaw    string            `protobuf:"bytes,19,opt,name=source_raw,json=sourceRaw,proto3" json:"source_raw,omitempty"`
+	TargetRaw    string            `protobuf:"bytes,20,opt,name=target_raw,json=targetRaw,proto3" json:"target_raw,omitempty"`
+	Metadata     string            `protobuf:"bytes,21,opt,name=metadata,proto3" json:"metadata,omitempty"`
