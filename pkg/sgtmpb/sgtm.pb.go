@@ -1260,3 +1260,299 @@ type Relationship struct {
 	SourceRaw    string            `protobuf:"bytes,19,opt,name=source_raw,json=sourceRaw,proto3" json:"source_raw,omitempty"`
 	TargetRaw    string            `protobuf:"bytes,20,opt,name=target_raw,json=targetRaw,proto3" json:"target_raw,omitempty"`
 	Metadata     string            `protobuf:"bytes,21,opt,name=metadata,proto3" json:"metadata,omitempty"`
+}
+
+func (x *Relationship) Reset() {
+	*x = Relationship{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Relationship) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Relationship) ProtoMessage() {}
+
+func (x *Relationship) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Relationship.ProtoReflect.Descriptor instead.
+func (*Relationship) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Relationship) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+func (x *Relationship) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *Relationship) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
+func (x *Relationship) GetDeletedAt() int64 {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return 0
+}
+
+func (x *Relationship) GetKind() Relationship_Kind {
+	if x != nil {
+		return x.Kind
+	}
+	return Relationship_UnknownKind
+}
+
+func (x *Relationship) GetSourcePostID() int64 {
+	if x != nil {
+		return x.SourcePostID
+	}
+	return 0
+}
+
+func (x *Relationship) GetSourcePost() *Post {
+	if x != nil {
+		return x.SourcePost
+	}
+	return nil
+}
+
+func (x *Relationship) GetTargetPostID() int64 {
+	if x != nil {
+		return x.TargetPostID
+	}
+	return 0
+}
+
+func (x *Relationship) GetTargetPost() *Post {
+	if x != nil {
+		return x.TargetPost
+	}
+	return nil
+}
+
+func (x *Relationship) GetSourceUserID() int64 {
+	if x != nil {
+		return x.SourceUserID
+	}
+	return 0
+}
+
+func (x *Relationship) GetSourceUser() *User {
+	if x != nil {
+		return x.SourceUser
+	}
+	return nil
+}
+
+func (x *Relationship) GetTargetUserID() int64 {
+	if x != nil {
+		return x.TargetUserID
+	}
+	return 0
+}
+
+func (x *Relationship) GetTargetUser() *User {
+	if x != nil {
+		return x.TargetUser
+	}
+	return nil
+}
+
+func (x *Relationship) GetSourceRaw() string {
+	if x != nil {
+		return x.SourceRaw
+	}
+	return ""
+}
+
+func (x *Relationship) GetTargetRaw() string {
+	if x != nil {
+		return x.TargetRaw
+	}
+	return ""
+}
+
+func (x *Relationship) GetMetadata() string {
+	if x != nil {
+		return x.Metadata
+	}
+	return ""
+}
+
+type Session struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserID             int64  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	DiscordAccessToken string `protobuf:"bytes,2,opt,name=discord_access_token,json=discordAccessToken,proto3" json:"discord_access_token,omitempty"`
+}
+
+func (x *Session) Reset() {
+	*x = Session{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Session) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session) ProtoMessage() {}
+
+func (x *Session) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session.ProtoReflect.Descriptor instead.
+func (*Session) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *Session) GetUserID() int64 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
+}
+
+func (x *Session) GetDiscordAccessToken() string {
+	if x != nil {
+		return x.DiscordAccessToken
+	}
+	return ""
+}
+
+type UploadsByWeek struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Weekday  int64 `protobuf:"varint,1,opt,name=weekday,proto3" json:"weekday,omitempty"`
+	Quantity int64 `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`
+}
+
+func (x *UploadsByWeek) Reset() {
+	*x = UploadsByWeek{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UploadsByWeek) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadsByWeek) ProtoMessage() {}
+
+func (x *UploadsByWeek) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadsByWeek.ProtoReflect.Descriptor instead.
+func (*UploadsByWeek) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UploadsByWeek) GetWeekday() int64 {
+	if x != nil {
+		return x.Weekday
+	}
+	return 0
+}
+
+func (x *UploadsByWeek) GetQuantity() int64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+type PostByKind struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Quantity int64     `protobuf:"varint,1,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Kind     Post_Kind `protobuf:"varint,2,opt,name=kind,proto3,enum=sgtm.Post_Kind" json:"kind,omitempty"`
+}
+
+func (x *PostByKind) Reset() {
+	*x = PostByKind{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostByKind) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostByKind) ProtoMessage() {}
+
+func (x *PostByKind) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostByKind.ProtoReflect.Descriptor instead.
+func (*PostByKind) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{12}
+}
