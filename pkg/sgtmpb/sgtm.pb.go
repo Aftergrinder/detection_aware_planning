@@ -1556,3 +1556,327 @@ func (x *PostByKind) ProtoReflect() protoreflect.Message {
 func (*PostByKind) Descriptor() ([]byte, []int) {
 	return file_sgtm_proto_rawDescGZIP(), []int{12}
 }
+
+func (x *PostByKind) GetQuantity() int64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+func (x *PostByKind) GetKind() Post_Kind {
+	if x != nil {
+		return x.Kind
+	}
+	return Post_UnknownKind
+}
+
+type Ping_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Ping_Request) Reset() {
+	*x = Ping_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Ping_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ping_Request) ProtoMessage() {}
+
+func (x *Ping_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ping_Request.ProtoReflect.Descriptor instead.
+func (*Ping_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{0, 0}
+}
+
+type Ping_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Ping_Response) Reset() {
+	*x = Ping_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Ping_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ping_Response) ProtoMessage() {}
+
+func (x *Ping_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ping_Response.ProtoReflect.Descriptor instead.
+func (*Ping_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{0, 1}
+}
+
+type Status_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Status_Request) Reset() {
+	*x = Status_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Status_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Status_Request) ProtoMessage() {}
+
+func (x *Status_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Status_Request.ProtoReflect.Descriptor instead.
+func (*Status_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{1, 0}
+}
+
+type Status_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Uptime         int32  `protobuf:"varint,1,opt,name=uptime,proto3" json:"uptime,omitempty"`
+	Hostname       string `protobuf:"bytes,2,opt,name=hostname,proto3" json:"hostname,omitempty"`
+	EverythingIsOk bool   `protobuf:"varint,3,opt,name=everything_is_ok,json=everythingIsOk,proto3" json:"everything_is_ok,omitempty"`
+}
+
+func (x *Status_Response) Reset() {
+	*x = Status_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Status_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Status_Response) ProtoMessage() {}
+
+func (x *Status_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Status_Response.ProtoReflect.Descriptor instead.
+func (*Status_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{1, 1}
+}
+
+func (x *Status_Response) GetUptime() int32 {
+	if x != nil {
+		return x.Uptime
+	}
+	return 0
+}
+
+func (x *Status_Response) GetHostname() string {
+	if x != nil {
+		return x.Hostname
+	}
+	return ""
+}
+
+func (x *Status_Response) GetEverythingIsOk() bool {
+	if x != nil {
+		return x.EverythingIsOk
+	}
+	return false
+}
+
+type Register_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Email     string `protobuf:"bytes,10,opt,name=email,proto3" json:"email,omitempty"`
+	Slug      string `protobuf:"bytes,11,opt,name=slug,proto3" json:"slug,omitempty"`
+	Firstname string `protobuf:"bytes,12,opt,name=firstname,proto3" json:"firstname,omitempty"`
+	Lastname  string `protobuf:"bytes,13,opt,name=lastname,proto3" json:"lastname,omitempty"`
+}
+
+func (x *Register_Request) Reset() {
+	*x = Register_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Register_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Register_Request) ProtoMessage() {}
+
+func (x *Register_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Register_Request.ProtoReflect.Descriptor instead.
+func (*Register_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *Register_Request) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *Register_Request) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *Register_Request) GetFirstname() string {
+	if x != nil {
+		return x.Firstname
+	}
+	return ""
+}
+
+func (x *Register_Request) GetLastname() string {
+	if x != nil {
+		return x.Lastname
+	}
+	return ""
+}
+
+type Register_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (x *Register_Response) Reset() {
+	*x = Register_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Register_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Register_Response) ProtoMessage() {}
+
+func (x *Register_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Register_Response.ProtoReflect.Descriptor instead.
+func (*Register_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{2, 1}
+}
+
+func (x *Register_Response) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
+type UserList_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UserList_Request) Reset() {
+	*x = UserList_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
