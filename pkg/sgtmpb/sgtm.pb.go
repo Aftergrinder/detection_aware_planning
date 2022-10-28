@@ -1880,3 +1880,306 @@ func (x *UserList_Request) Reset() {
 		ms.StoreMessageInfo(mi)
 	}
 }
+
+func (x *UserList_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserList_Request) ProtoMessage() {}
+
+func (x *UserList_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserList_Request.ProtoReflect.Descriptor instead.
+func (*UserList_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{3, 0}
+}
+
+type UserList_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Users []*User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+}
+
+func (x *UserList_Response) Reset() {
+	*x = UserList_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserList_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserList_Response) ProtoMessage() {}
+
+func (x *UserList_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserList_Response.ProtoReflect.Descriptor instead.
+func (*UserList_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{3, 1}
+}
+
+func (x *UserList_Response) GetUsers() []*User {
+	if x != nil {
+		return x.Users
+	}
+	return nil
+}
+
+type PostList_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PostList_Request) Reset() {
+	*x = PostList_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostList_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostList_Request) ProtoMessage() {}
+
+func (x *PostList_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostList_Request.ProtoReflect.Descriptor instead.
+func (*PostList_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{4, 0}
+}
+
+type PostList_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Posts []*Post `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
+}
+
+func (x *PostList_Response) Reset() {
+	*x = PostList_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostList_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostList_Response) ProtoMessage() {}
+
+func (x *PostList_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostList_Response.ProtoReflect.Descriptor instead.
+func (*PostList_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{4, 1}
+}
+
+func (x *PostList_Response) GetPosts() []*Post {
+	if x != nil {
+		return x.Posts
+	}
+	return nil
+}
+
+type PostSync_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ID int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *PostSync_Request) Reset() {
+	*x = PostSync_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostSync_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostSync_Request) ProtoMessage() {}
+
+func (x *PostSync_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostSync_Request.ProtoReflect.Descriptor instead.
+func (*PostSync_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *PostSync_Request) GetID() int64 {
+	if x != nil {
+		return x.ID
+	}
+	return 0
+}
+
+type PostSync_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PostSync_Response) Reset() {
+	*x = PostSync_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostSync_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostSync_Response) ProtoMessage() {}
+
+func (x *PostSync_Response) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostSync_Response.ProtoReflect.Descriptor instead.
+func (*PostSync_Response) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{5, 1}
+}
+
+type Me_Request struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Me_Request) Reset() {
+	*x = Me_Request{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Me_Request) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Me_Request) ProtoMessage() {}
+
+func (x *Me_Request) ProtoReflect() protoreflect.Message {
+	mi := &file_sgtm_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Me_Request.ProtoReflect.Descriptor instead.
+func (*Me_Request) Descriptor() ([]byte, []int) {
+	return file_sgtm_proto_rawDescGZIP(), []int{6, 0}
+}
+
+type Me_Response struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	User *User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+}
+
+func (x *Me_Response) Reset() {
+	*x = Me_Response{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sgtm_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Me_Response) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Me_Response) ProtoMessage() {}
+
+func (x *Me_Response) ProtoReflect() protoreflect.Message {
