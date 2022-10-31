@@ -3029,3 +3029,19 @@ func file_sgtm_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
+			RawDescriptor: file_sgtm_proto_rawDesc,
+			NumEnums:      5,
+			NumMessages:   27,
+			NumExtensions: 0,
+			NumServices:   1,
+		},
+		GoTypes:           file_sgtm_proto_goTypes,
+		DependencyIndexes: file_sgtm_proto_depIdxs,
+		EnumInfos:         file_sgtm_proto_enumTypes,
+		MessageInfos:      file_sgtm_proto_msgTypes,
+	}.Build()
+	File_sgtm_proto = out.File
+	file_sgtm_proto_rawDesc = nil
+	file_sgtm_proto_goTypes = nil
+	file_sgtm_proto_depIdxs = nil
+}
