@@ -38,4 +38,10 @@ func request_WebAPI_UserList_0(ctx context.Context, marshaler runtime.Marshaler,
 	var metadata runtime.ServerMetadata
 
 	msg, err := client.UserList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	re
+	return msg, metadata, err
+
+}
+
+func local_request_WebAPI_UserList_0(ctx context.Context, marshaler runtime.Marshaler, server WebAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UserList_Request
+	var metadata run
