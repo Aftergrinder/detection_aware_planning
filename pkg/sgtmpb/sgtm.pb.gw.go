@@ -33,4 +33,9 @@ var _ = utilities.NewDoubleArray
 var _ = descriptor.ForMessage
 var _ = metadata.Join
 
-func request_WebAPI_UserList_0(ctx context.Context, marshaler runtime.Marshaler, client WebAPIClient, req 
+func request_WebAPI_UserList_0(ctx context.Context, marshaler runtime.Marshaler, client WebAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UserList_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.UserList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	re
