@@ -60,4 +60,13 @@ func request_WebAPI_PostList_0(ctx context.Context, marshaler runtime.Marshaler,
 
 }
 
-func local_request_WebAPI_PostList_0(ctx context.Context, marshaler runtime.Marshaler, server Web
+func local_request_WebAPI_PostList_0(ctx context.Context, marshaler runtime.Marshaler, server WebAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq PostList_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.PostList(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_WebAPI_Me_0(ctx context.Contex
