@@ -52,4 +52,12 @@ func local_request_WebAPI_UserList_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_WebAPI_PostList_0(ctx context.Context, marshaler runtime.Marshaler, client WebAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq P
+	var protoReq PostList_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.PostList(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WebAPI_PostList_0(ctx context.Context, marshaler runtime.Marshaler, server Web
