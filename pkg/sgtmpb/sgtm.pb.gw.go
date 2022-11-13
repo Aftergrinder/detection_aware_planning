@@ -88,4 +88,12 @@ func local_request_WebAPI_Me_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func request_WebAPI_Ping_0(ctx context.Context, marshaler runtime.Marshaler, client WebAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var pr
+	var protoReq Ping_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.Ping(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WebAPI_Ping_0(ctx context.Context, marshaler runtime.Marshaler, server Web
