@@ -105,4 +105,8 @@ func local_request_WebAPI_Ping_0(ctx context.Context, marshaler runtime.Marshale
 
 }
 
-func request_WebAPI_Status_0
+func request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, client WebAPIClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Status_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.Status
