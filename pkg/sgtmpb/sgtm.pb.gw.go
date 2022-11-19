@@ -114,4 +114,15 @@ func request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 }
 
-func local_request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, server WebAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime
+func local_request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, server WebAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Status_Request
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.Status(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+// RegisterWebAPIHandlerServer registers the http handlers for service WebAPI to "mux".
+// UnaryRPC     :call WebAPIServer directly.
+/
