@@ -109,4 +109,9 @@ func request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, c
 	var protoReq Status_Request
 	var metadata runtime.ServerMetadata
 
-	msg, err := client.Status
+	msg, err := client.Status(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marshaler, server WebAPIServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime
