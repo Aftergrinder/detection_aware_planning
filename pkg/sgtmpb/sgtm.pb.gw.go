@@ -125,4 +125,6 @@ func local_request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marsha
 
 // RegisterWebAPIHandlerServer registers the http handlers for service WebAPI to "mux".
 // UnaryRPC     :call WebAPIServer directly.
-/
+// StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWebAPIHandlerFromEndpoint instead.
+func RegisterWebAPIHandlerServer(ctx 
