@@ -127,4 +127,9 @@ func local_request_WebAPI_Status_0(ctx context.Context, marshaler runtime.Marsha
 // UnaryRPC     :call WebAPIServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWebAPIHandlerFromEndpoint instead.
-func RegisterWebAPIHandlerServer(ctx 
+func RegisterWebAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WebAPIServer) error {
+
+	mux.Handle("GET", pattern_WebAPI_UserList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
