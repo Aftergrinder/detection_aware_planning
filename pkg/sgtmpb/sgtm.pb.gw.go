@@ -171,4 +171,12 @@ func RegisterWebAPIHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 			return
 		}
 
-		forward_WebAPI_PostList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptio
+		forward_WebAPI_PostList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_WebAPI_Me_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewCont
