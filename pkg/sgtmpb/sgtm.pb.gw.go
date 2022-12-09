@@ -263,4 +263,15 @@ func RegisterWebAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 		}
 		go func() {
 			<-ctx.Done()
-			if cerr := conn.Close(); cerr != ni
+			if cerr := conn.Close(); cerr != nil {
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+			}
+		}()
+	}()
+
+	return RegisterWebAPIHandler(ctx, mux, conn)
+}
+
+// RegisterWebAPIHandler registers the http handlers for service WebAPI to "mux".
+// The handlers forward requests to the grpc endpoint over "conn".
+func RegisterWebAPIHandler(
