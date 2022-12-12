@@ -282,4 +282,8 @@ func RegisterWebAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "WebAPIClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "WebAPIClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "WebAPIClient" t
+// "WebAPIClient" to call the correct interceptors.
+func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WebAPIClient) error {
+
+	mux.Handle("GET", pattern_WebAPI_UserList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCa
