@@ -274,4 +274,9 @@ func RegisterWebAPIHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMu
 
 // RegisterWebAPIHandler registers the http handlers for service WebAPI to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterWebAPIHandler(
+func RegisterWebAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterWebAPIHandlerClient(ctx, mux, NewWebAPIClient(conn))
+}
+
+// RegisterWebAPIHandlerClient registers the http handlers for service WebAPI
+// to "mux". The handlers forward requests to the grpc endpoint over the
