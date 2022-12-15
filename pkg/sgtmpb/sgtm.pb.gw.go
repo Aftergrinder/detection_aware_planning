@@ -301,4 +301,12 @@ func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			return
 		}
 
-		forward_WebAPI_UserList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOpti
+		forward_WebAPI_UserList_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_WebAPI_PostList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := ru
