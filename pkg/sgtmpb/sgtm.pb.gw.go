@@ -286,4 +286,12 @@ func RegisterWebAPIHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WebAPIClient) error {
 
 	mux.Handle("GET", pattern_WebAPI_UserList_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCa
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_WebAP
