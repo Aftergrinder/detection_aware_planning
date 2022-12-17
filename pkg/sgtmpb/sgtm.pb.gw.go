@@ -334,4 +334,11 @@ func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		re
+		resp, md, err := request_WebAPI_Me_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WebAPI_Me_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseO
