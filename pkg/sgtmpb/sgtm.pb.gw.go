@@ -391,4 +391,8 @@ func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 var (
 	pattern_WebAPI_UserList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "UserList"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_WebA
+	pattern_WebAPI_PostList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "PostList"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_WebAPI_Me_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Me"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_We
