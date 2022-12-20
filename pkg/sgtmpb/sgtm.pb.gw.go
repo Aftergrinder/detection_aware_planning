@@ -378,4 +378,17 @@ func RegisterWebAPIHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			r
+			return
+		}
+
+		forward_WebAPI_Status_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	return nil
+}
+
+var (
+	pattern_WebAPI_UserList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "UserList"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_WebA
