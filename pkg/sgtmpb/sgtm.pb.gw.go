@@ -395,4 +395,6 @@ var (
 
 	pattern_WebAPI_Me_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Me"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_We
+	pattern_WebAPI_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Ping"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_WebAPI_Status_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Status"}, "", runtime.Assu
