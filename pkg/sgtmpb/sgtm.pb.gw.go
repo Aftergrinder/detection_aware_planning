@@ -397,4 +397,16 @@ var (
 
 	pattern_WebAPI_Ping_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Ping"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_WebAPI_Status_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Status"}, "", runtime.Assu
+	pattern_WebAPI_Status_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "v1", "Status"}, "", runtime.AssumeColonVerbOpt(true)))
+)
+
+var (
+	forward_WebAPI_UserList_0 = runtime.ForwardResponseMessage
+
+	forward_WebAPI_PostList_0 = runtime.ForwardResponseMessage
+
+	forward_WebAPI_Me_0 = runtime.ForwardResponseMessage
+
+	forward_WebAPI_Ping_0 = runtime.ForwardResponseMessage
+
+	forward_WebAPI_Status_0 = run
