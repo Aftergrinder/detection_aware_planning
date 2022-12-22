@@ -409,4 +409,5 @@ var (
 
 	forward_WebAPI_Ping_0 = runtime.ForwardResponseMessage
 
-	forward_WebAPI_Status_0 = run
+	forward_WebAPI_Status_0 = runtime.ForwardResponseMessage
+)
