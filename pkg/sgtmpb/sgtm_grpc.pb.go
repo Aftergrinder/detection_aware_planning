@@ -10,4 +10,10 @@ import (
 	status "google.golang.org/grpc/status"
 )
 
-// This is a compile-time assertion to ensure that 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion7
+
+// WebAPIClient is the client API for WebAPI service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg
