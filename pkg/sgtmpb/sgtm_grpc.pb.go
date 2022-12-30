@@ -19,4 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WebAPIClient interface {
 	//rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Register", body: "*"}; }
-	UserList(ctx context.Context, in *UserList_Request, opts ...grpc.C
+	UserList(ctx context.Context, in *UserList_Request, opts ...grpc.CallOption) (*UserList_Response, error)
+	PostList(ctx context.Context, in *PostList_Request, opts ...grpc.CallOption) (*PostList_Response, error)
+	// rpc PostSync(PostSync.Request) returns (PostSync.Response) { option (google.api.http) = {get: "/api/v1/PostSync"}; }
+	Me(ctx context.Context, in *Me_Reques
