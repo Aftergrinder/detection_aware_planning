@@ -22,4 +22,13 @@ type WebAPIClient interface {
 	UserList(ctx context.Context, in *UserList_Request, opts ...grpc.CallOption) (*UserList_Response, error)
 	PostList(ctx context.Context, in *PostList_Request, opts ...grpc.CallOption) (*PostList_Response, error)
 	// rpc PostSync(PostSync.Request) returns (PostSync.Response) { option (google.api.http) = {get: "/api/v1/PostSync"}; }
-	Me(ctx context.Context, in *Me_Reques
+	Me(ctx context.Context, in *Me_Request, opts ...grpc.CallOption) (*Me_Response, error)
+	Ping(ctx context.Context, in *Ping_Request, opts ...grpc.CallOption) (*Ping_Response, error)
+	Status(ctx context.Context, in *Status_Request, opts ...grpc.CallOption) (*Status_Response, error)
+}
+
+type webAPIClient struct {
+	cc grpc.ClientConnInterface
+}
+
+fu
