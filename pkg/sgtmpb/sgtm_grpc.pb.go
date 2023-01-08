@@ -31,4 +31,10 @@ type webAPIClient struct {
 	cc grpc.ClientConnInterface
 }
 
-fu
+func NewWebAPIClient(cc grpc.ClientConnInterface) WebAPIClient {
+	return &webAPIClient{cc}
+}
+
+func (c *webAPIClient) UserList(ctx context.Context, in *UserList_Request, opts ...grpc.CallOption) (*UserList_Response, error) {
+	out := new(UserList_Response)
+	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/UserList", in,
