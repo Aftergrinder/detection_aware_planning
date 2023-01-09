@@ -68,4 +68,16 @@ func (c *webAPIClient) Ping(ctx context.Context, in *Ping_Request, opts ...grpc.
 	if err != nil {
 		return nil, err
 	}
-	retur
+	return out, nil
+}
+
+func (c *webAPIClient) Status(ctx context.Context, in *Status_Request, opts ...grpc.CallOption) (*Status_Response, error) {
+	out := new(Status_Response)
+	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/Status", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WebAPISer
