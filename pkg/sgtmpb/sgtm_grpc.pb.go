@@ -58,3 +58,14 @@ func (c *webAPIClient) Me(ctx context.Context, in *Me_Request, opts ...grpc.Call
 	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/Me", in, out, opts...)
 	if err != nil {
 		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webAPIClient) Ping(ctx context.Context, in *Ping_Request, opts ...grpc.CallOption) (*Ping_Response, error) {
+	out := new(Ping_Response)
+	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/Ping", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	retur
