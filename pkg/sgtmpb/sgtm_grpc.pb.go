@@ -46,4 +46,15 @@ func (c *webAPIClient) UserList(ctx context.Context, in *UserList_Request, opts 
 
 func (c *webAPIClient) PostList(ctx context.Context, in *PostList_Request, opts ...grpc.CallOption) (*PostList_Response, error) {
 	out := new(PostList_Response)
-	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/PostList",
+	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/PostList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *webAPIClient) Me(ctx context.Context, in *Me_Request, opts ...grpc.CallOption) (*Me_Response, error) {
+	out := new(Me_Response)
+	err := c.cc.Invoke(ctx, "/sgtm.WebAPI/Me", in, out, opts...)
+	if err != nil {
+		return nil, err
