@@ -88,4 +88,10 @@ type WebAPIServer interface {
 	UserList(context.Context, *UserList_Request) (*UserList_Response, error)
 	PostList(context.Context, *PostList_Request) (*PostList_Response, error)
 	// rpc PostSync(PostSync.Request) returns (PostSync.Response) { option (google.api.http) = {get: "/api/v1/PostSync"}; }
-	Me(context.Context, *Me_Request) (*Me_Re
+	Me(context.Context, *Me_Request) (*Me_Response, error)
+	Ping(context.Context, *Ping_Request) (*Ping_Response, error)
+	Status(context.Context, *Status_Request) (*Status_Response, error)
+	mustEmbedUnimplementedWebAPIServer()
+}
+
+// UnimplementedWebAPIServer must be embedded to have forward compatible impleme
