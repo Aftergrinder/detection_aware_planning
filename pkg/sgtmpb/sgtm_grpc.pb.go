@@ -84,4 +84,8 @@ func (c *webAPIClient) Status(ctx context.Context, in *Status_Request, opts ...g
 // All implementations must embed UnimplementedWebAPIServer
 // for forward compatibility
 type WebAPIServer interface {
-	//rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Regis
+	//rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Register", body: "*"}; }
+	UserList(context.Context, *UserList_Request) (*UserList_Response, error)
+	PostList(context.Context, *PostList_Request) (*PostList_Response, error)
+	// rpc PostSync(PostSync.Request) returns (PostSync.Response) { option (google.api.http) = {get: "/api/v1/PostSync"}; }
+	Me(context.Context, *Me_Request) (*Me_Re
