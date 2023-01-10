@@ -80,4 +80,8 @@ func (c *webAPIClient) Status(ctx context.Context, in *Status_Request, opts ...g
 	return out, nil
 }
 
-// WebAPISer
+// WebAPIServer is the server API for WebAPI service.
+// All implementations must embed UnimplementedWebAPIServer
+// for forward compatibility
+type WebAPIServer interface {
+	//rpc Register(Register.Request) returns (Register.Response) { option (google.api.http) = {post: "/api/v1/Regis
