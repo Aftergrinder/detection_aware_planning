@@ -94,4 +94,11 @@ type WebAPIServer interface {
 	mustEmbedUnimplementedWebAPIServer()
 }
 
-// UnimplementedWebAPIServer must be embedded to have forward compatible impleme
+// UnimplementedWebAPIServer must be embedded to have forward compatible implementations.
+type UnimplementedWebAPIServer struct {
+}
+
+func (UnimplementedWebAPIServer) UserList(context.Context, *UserList_Request) (*UserList_Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserList not implemented")
+}
+func (UnimplementedWebAPIServer) PostList(con
