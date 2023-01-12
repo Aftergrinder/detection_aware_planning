@@ -105,4 +105,9 @@ func (UnimplementedWebAPIServer) PostList(context.Context, *PostList_Request) (*
 	return nil, status.Errorf(codes.Unimplemented, "method PostList not implemented")
 }
 func (UnimplementedWebAPIServer) Me(context.Context, *Me_Request) (*Me_Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Me no
+	return nil, status.Errorf(codes.Unimplemented, "method Me not implemented")
+}
+func (UnimplementedWebAPIServer) Ping(context.Context, *Ping_Request) (*Ping_Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
+func (UnimplementedWebAPIServer) Status(context.Context, *Status_Request) (*St
