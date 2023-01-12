@@ -110,4 +110,10 @@ func (UnimplementedWebAPIServer) Me(context.Context, *Me_Request) (*Me_Response,
 func (UnimplementedWebAPIServer) Ping(context.Context, *Ping_Request) (*Ping_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
-func (UnimplementedWebAPIServer) Status(context.Context, *Status_Request) (*St
+func (UnimplementedWebAPIServer) Status(context.Context, *Status_Request) (*Status_Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Status not implemented")
+}
+func (UnimplementedWebAPIServer) mustEmbedUnimplementedWebAPIServer() {}
+
+// UnsafeWebAPIServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not r
