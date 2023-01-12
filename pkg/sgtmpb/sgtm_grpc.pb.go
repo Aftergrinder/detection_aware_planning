@@ -101,4 +101,8 @@ type UnimplementedWebAPIServer struct {
 func (UnimplementedWebAPIServer) UserList(context.Context, *UserList_Request) (*UserList_Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserList not implemented")
 }
-func (UnimplementedWebAPIServer) PostList(con
+func (UnimplementedWebAPIServer) PostList(context.Context, *PostList_Request) (*PostList_Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostList not implemented")
+}
+func (UnimplementedWebAPIServer) Me(context.Context, *Me_Request) (*Me_Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Me no
