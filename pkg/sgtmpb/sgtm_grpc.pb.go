@@ -116,4 +116,11 @@ func (UnimplementedWebAPIServer) Status(context.Context, *Status_Request) (*Stat
 func (UnimplementedWebAPIServer) mustEmbedUnimplementedWebAPIServer() {}
 
 // UnsafeWebAPIServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not r
+// Use of this interface is not recommended, as added methods to WebAPIServer will
+// result in compilation errors.
+type UnsafeWebAPIServer interface {
+	mustEmbedUnimplementedWebAPIServer()
+}
+
+func RegisterWebAPIServer(s grpc.ServiceRegistrar, srv WebAPIServer) {
+	s.RegisterService(&_WebAPI_serviceDesc
