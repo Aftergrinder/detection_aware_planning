@@ -123,4 +123,13 @@ type UnsafeWebAPIServer interface {
 }
 
 func RegisterWebAPIServer(s grpc.ServiceRegistrar, srv WebAPIServer) {
-	s.RegisterService(&_WebAPI_serviceDesc
+	s.RegisterService(&_WebAPI_serviceDesc, srv)
+}
+
+func _WebAPI_UserList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserList_Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebAPIServer).UserList(ctx, in)
