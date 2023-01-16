@@ -133,3 +133,13 @@ func _WebAPI_UserList_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	if interceptor == nil {
 		return srv.(WebAPIServer).UserList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sgtm.WebAPI/UserList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebAPIServer).UserList(ctx, req.(*UserList_Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
