@@ -143,3 +143,11 @@ func _WebAPI_UserList_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _WebAPI_PostList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostList_Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		re
