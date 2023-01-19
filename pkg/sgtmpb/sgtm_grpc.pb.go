@@ -168,4 +168,16 @@ func _WebAPI_Me_Handler(srv interface{}, ctx context.Context, dec func(interface
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WebAPIServer).Me(c
+		return srv.(WebAPIServer).Me(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sgtm.WebAPI/Me",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebAPIServer).Me(ctx, req.(*Me_Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+fun
