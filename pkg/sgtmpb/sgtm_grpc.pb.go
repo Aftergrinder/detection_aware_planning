@@ -150,4 +150,13 @@ func _WebAPI_PostList_Handler(srv interface{}, ctx context.Context, dec func(int
 		return nil, err
 	}
 	if interceptor == nil {
-		re
+		return srv.(WebAPIServer).PostList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sgtm.WebAPI/PostList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebAPIServer).PostList(ctx, req.(*PostList_Request))
+	}
+	return interceptor(ctx
