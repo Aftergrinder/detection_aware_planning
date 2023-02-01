@@ -198,4 +198,13 @@ func _WebAPI_Ping_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _WebAPI_Status_Handler(srv int
+func _WebAPI_Status_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Status_Request)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WebAPIServer).Status(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server
