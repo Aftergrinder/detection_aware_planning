@@ -186,4 +186,16 @@ func _WebAPI_Ping_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WebAPIServer).Ping(ctx,
+		return srv.(WebAPIServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sgtm.WebAPI/Ping",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebAPIServer).Ping(ctx, req.(*Ping_Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WebAPI_Status_Handler(srv int
