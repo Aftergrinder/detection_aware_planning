@@ -217,4 +217,17 @@ func _WebAPI_Status_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 var _WebAPI_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "sgtm.WebAPI
+	ServiceName: "sgtm.WebAPI",
+	HandlerType: (*WebAPIServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UserList",
+			Handler:    _WebAPI_UserList_Handler,
+		},
+		{
+			MethodName: "PostList",
+			Handler:    _WebAPI_PostList_Handler,
+		},
+		{
+			MethodName: "Me",
+			Handler:    _WebAPI_Me_Handl
