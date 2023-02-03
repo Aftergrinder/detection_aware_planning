@@ -207,4 +207,14 @@ func _WebAPI_Status_Handler(srv interface{}, ctx context.Context, dec func(inter
 		return srv.(WebAPIServer).Status(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server
+		Server:     srv,
+		FullMethod: "/sgtm.WebAPI/Status",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WebAPIServer).Status(ctx, req.(*Status_Request))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _WebAPI_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "sgtm.WebAPI
