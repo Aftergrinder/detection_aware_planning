@@ -230,4 +230,17 @@ var _WebAPI_serviceDesc = grpc.ServiceDesc{
 		},
 		{
 			MethodName: "Me",
-			Handler:    _WebAPI_Me_Handl
+			Handler:    _WebAPI_Me_Handler,
+		},
+		{
+			MethodName: "Ping",
+			Handler:    _WebAPI_Ping_Handler,
+		},
+		{
+			MethodName: "Status",
+			Handler:    _WebAPI_Status_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "sgtm.proto",
+}
