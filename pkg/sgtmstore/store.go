@@ -34,4 +34,12 @@ type Store interface {
 	GetPostComments(postID int64) ([]*sgtmpb.Post, error)
 	UpdatePost(post *sgtmpb.Post, updates interface{}) error
 	GetPostListByUserID(userID int64, limit int) ([]*sgtmpb.Post, int64, error)
-	CheckAndUpdatePost(post *sgtmpb
+	CheckAndUpdatePost(post *sgtmpb.Post) error
+
+	// counts
+	GetUploadsByWeek() ([]*sgtmpb.UploadsByWeek, error)
+	GetNumberOfDraftPosts() (int64, error)
+	GetNumberOfUsers() (int64, error)
+	GetNumberOfPostsByKind() ([]*sgtmpb.PostByKind, error)
+	GetTotalDuration() (int64, error)
+	GetCalendarHeatMap(authorID int64)
