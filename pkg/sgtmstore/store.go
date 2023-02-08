@@ -17,4 +17,9 @@ import (
 
 type Store interface {
 	// user store
-	GetUserByID
+	GetUserByID(userID int64) (*sgtmpb.User, error)
+	GetLastUsersList(limit int) ([]*sgtmpb.User, error)
+	CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error)
+	GetUserBySlug(slug string) (*sgtmpb.User, error)
+	UpdateUser(user *sgtmpb.User, updates interface{}) error
+	GetUserR
