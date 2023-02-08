@@ -29,4 +29,9 @@ type Store interface {
 	GetTrackByCID(cid string) (*sgtmpb.Post, error)
 	GetTrackBySCID(scid uint64) (*sgtmpb.Post, error)
 	GetLastActivities(moulID int64) ([]*sgtmpb.Post, error)
-	CreatePost(
+	CreatePost(post *sgtmpb.Post) error
+	GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, error)
+	GetPostComments(postID int64) ([]*sgtmpb.Post, error)
+	UpdatePost(post *sgtmpb.Post, updates interface{}) error
+	GetPostListByUserID(userID int64, limit int) ([]*sgtmpb.Post, int64, error)
+	CheckAndUpdatePost(post *sgtmpb
