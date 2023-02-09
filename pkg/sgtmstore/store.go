@@ -42,4 +42,22 @@ type Store interface {
 	GetNumberOfUsers() (int64, error)
 	GetNumberOfPostsByKind() ([]*sgtmpb.PostByKind, error)
 	GetTotalDuration() (int64, error)
-	GetCalendarHeatMap(authorID int64)
+	GetCalendarHeatMap(authorID int64) ([]int64, error)
+
+	// internal
+	DB() *gorm.DB
+}
+
+type store struct {
+	db *gorm.DB
+}
+
+func New(db *gorm.DB, sfn *snowflake.Node) (Store, error) {
+	wrap, err := dbInit(db, sfn)
+	if err != nil {
+		return nil, fmt.Errorf("db init: %w", err)
+	}
+	return &store{db: wrap}, nil
+}
+
+func (s *store) DB(
