@@ -60,4 +60,20 @@ func New(db *gorm.DB, sfn *snowflake.Node) (Store, error) {
 	return &store{db: wrap}, nil
 }
 
-func (s *store) DB(
+func (s *store) DB() *gorm.DB { return s.db }
+
+func (s *store) GetUserByID(userID int64) (*sgtmpb.User, error) {
+	var user sgtmpb.User
+
+	err := s.db.
+		Where("id = ?", userID).
+		First(&user).
+		Error
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}
+
+func (s *store) GetLastUsersList(limit int) ([]*sgtm
