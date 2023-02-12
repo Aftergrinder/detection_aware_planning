@@ -76,4 +76,22 @@ func (s *store) GetUserByID(userID int64) (*sgtmpb.User, error) {
 	return &user, nil
 }
 
-func (s *store) GetLastUsersList(limit int) ([]*sgtm
+func (s *store) GetLastUsersList(limit int) ([]*sgtmpb.User, error) {
+	var users []*sgtmpb.User
+	err := s.db.
+		Order("created_at desc").
+		Limit(limit).
+		Find(&users).
+		Error
+	if err != nil {
+		return nil, err
+	}
+
+	for _, u := range users {
+		u.Filter()
+	}
+	return users, nil
+}
+
+func (s *store) GetPostList(limit int) ([]*sgtmpb.Post, error) {
+	var p
