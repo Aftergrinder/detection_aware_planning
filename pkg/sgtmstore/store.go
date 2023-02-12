@@ -123,3 +123,9 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 	switch {
 	case errors.Is(err, gorm.ErrRecordNotFound):
 		// user not found, creating it
+		dbUser = &sgtmpb.User{
+			Email:           dbUser.Email,
+			Avatar:          fmt.Sprintf("https://cdn.discordapp.com/avatars/%s/%s.png", dbUser.DiscordID, dbUser.Avatar),
+			Slug:            slug.Make(dbUser.Slug),
+			Locale:          dbUser.Locale,
+			DiscordID:       dbUser.D
