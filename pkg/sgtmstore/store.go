@@ -94,4 +94,18 @@ func (s *store) GetLastUsersList(limit int) ([]*sgtmpb.User, error) {
 }
 
 func (s *store) GetPostList(limit int) ([]*sgtmpb.Post, error) {
-	var p
+	var posts []*sgtmpb.Post
+
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		Preload("Author").
+		Where(sgtmpb.Post{
+			Visibility: sgtmpb.Visibility_Public,
+			Kind:       sgtmpb.Post_TrackKind,
+		}).
+		Order("sort_date desc").
+		Limit(limit).
+		Find(&posts).
+		Error
+	if err != nil {
+		return nil, 
