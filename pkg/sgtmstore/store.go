@@ -108,4 +108,18 @@ func (s *store) GetPostList(limit int) ([]*sgtmpb.Post, error) {
 		Find(&posts).
 		Error
 	if err != nil {
-		return nil, 
+		return nil, err
+	}
+
+	for _, post := range posts {
+		post.Filter()
+	}
+
+	return posts, nil
+}
+
+func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
+	err := s.db.Where(&dbUser).First(&dbUser).Error
+	switch {
+	case errors.Is(err, gorm.ErrRecordNotFound):
+		// user not found, creating it
