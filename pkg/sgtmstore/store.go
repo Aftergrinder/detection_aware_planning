@@ -128,4 +128,11 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 			Avatar:          fmt.Sprintf("https://cdn.discordapp.com/avatars/%s/%s.png", dbUser.DiscordID, dbUser.Avatar),
 			Slug:            slug.Make(dbUser.Slug),
 			Locale:          dbUser.Locale,
-			DiscordID:       dbUser.D
+			DiscordID:       dbUser.DiscordID,
+			DiscordUsername: fmt.Sprintf("%s#%s", dbUser.Slug, dbUser.DiscordUsername),
+			// Firstname
+			// Lastname
+		}
+		// FIXME: check if slug already exists, if yes, append something to the slug
+		err = s.db.Omit(clause.Associations).Transaction(func(tx *gorm.DB) error {
+			if err := tx.Create(&dbUser
