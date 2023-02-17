@@ -143,4 +143,18 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 			if err := tx.Create(&registerEvent).Error; err != nil {
 				return err
 			}
-			linkDiscordEvent := sgtmpb.Post{AuthorID: d
+			linkDiscordEvent := sgtmpb.Post{AuthorID: dbUser.ID, Kind: sgtmpb.Post_LinkDiscordAccountKind}
+			if err := tx.Create(&linkDiscordEvent).Error; err != nil {
+				return err
+			}
+			return nil
+		})
+		if err != nil {
+			return nil, err
+		}
+
+	case err == nil:
+		// user exists
+		// FIXME: update user in DB if needed
+
+		loginEvent := sgtm
