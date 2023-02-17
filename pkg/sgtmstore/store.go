@@ -157,4 +157,16 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 		// user exists
 		// FIXME: update user in DB if needed
 
-		loginEvent := sgtm
+		loginEvent := sgtmpb.Post{AuthorID: dbUser.ID, Kind: sgtmpb.Post_LoginKind}
+		if err := s.db.Omit(clause.Associations).Create(&loginEvent).Error; err != nil {
+			return nil, err
+		}
+
+	default:
+		// unexpected error
+		return nil, err
+	}
+	return dbUser, nil
+}
+
+func (s *store) GetTrackByCID(cid string) (*sgtm
