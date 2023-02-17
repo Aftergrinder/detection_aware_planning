@@ -135,4 +135,12 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 		}
 		// FIXME: check if slug already exists, if yes, append something to the slug
 		err = s.db.Omit(clause.Associations).Transaction(func(tx *gorm.DB) error {
-			if err := tx.Create(&dbUser
+			if err := tx.Create(&dbUser).Error; err != nil {
+				return err
+			}
+
+			registerEvent := sgtmpb.Post{AuthorID: dbUser.ID, Kind: sgtmpb.Post_RegisterKind}
+			if err := tx.Create(&registerEvent).Error; err != nil {
+				return err
+			}
+			linkDiscordEvent := sgtmpb.Post{AuthorID: d
