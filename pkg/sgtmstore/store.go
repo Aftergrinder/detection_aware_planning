@@ -169,4 +169,18 @@ func (s *store) CreateUser(dbUser *sgtmpb.User) (*sgtmpb.User, error) {
 	return dbUser, nil
 }
 
-func (s *store) GetTrackByCID(cid string) (*sgtm
+func (s *store) GetTrackByCID(cid string) (*sgtmpb.Post, error) {
+	var post sgtmpb.Post
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		Where(sgtmpb.Post{IPFSCID: cid}).
+		First(&post).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return &post, nil
+}
+
+func (s *store) GetTrackBySCID(scid uint64) (*sgtmpb.Post, error) {
+	var post sgtm
