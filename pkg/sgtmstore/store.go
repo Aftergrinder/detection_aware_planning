@@ -183,4 +183,18 @@ func (s *store) GetTrackByCID(cid string) (*sgtmpb.Post, error) {
 }
 
 func (s *store) GetTrackBySCID(scid uint64) (*sgtmpb.Post, error) {
-	var post sgtm
+	var post sgtmpb.Post
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		Where(sgtmpb.Post{SoundCloudID: scid}).
+		First(&post).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return &post, nil
+}
+
+func (s *store) GetUploadsByWeek() ([]*sgtmpb.UploadsByWeek, error) {
+	var upbyw []*sgtmpb.UploadsByWeek
+	err :=
