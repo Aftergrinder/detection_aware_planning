@@ -197,4 +197,15 @@ func (s *store) GetTrackBySCID(scid uint64) (*sgtmpb.Post, error) {
 
 func (s *store) GetUploadsByWeek() ([]*sgtmpb.UploadsByWeek, error) {
 	var upbyw []*sgtmpb.UploadsByWeek
-	err :=
+	err := s.db.Model(&sgtmpb.Post{}).
+		Model(&sgtmpb.Post{}).
+		Where(&sgtmpb.Post{Kind: sgtmpb.Post_TrackKind}).
+		Select(`strftime("%w", sort_date/1000000000, "unixepoch") as weekday , count(*) as quantity`).
+		Group("weekday").
+		Find(&upbyw).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return upbyw, nil
+}
