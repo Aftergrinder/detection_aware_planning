@@ -209,3 +209,12 @@ func (s *store) GetUploadsByWeek() ([]*sgtmpb.UploadsByWeek, error) {
 	}
 	return upbyw, nil
 }
+
+func (s *store) GetLastActivities(moulID int64) ([]*sgtmpb.Post, error) {
+	var lastAct []*sgtmpb.Post
+	err := s.db.
+		Preload("Author").
+		Preload("TargetPost").
+		Preload("TargetUser").
+		Order("created_at desc").
+		Where("NOT (author_id == ? AND kind IN (?))", moulID, []s
