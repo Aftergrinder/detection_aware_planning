@@ -226,4 +226,19 @@ func (s *store) GetLastActivities(moulID int64) ([]*sgtmpb.Post, error) {
 			sgtmpb.Post_LinkDiscordAccountKind,
 			// sgtmpb.Post_LoginKind,
 		}).
-		Limit(42
+		Limit(42).
+		Find(&lastAct).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return lastAct, nil
+}
+
+func (s *store) GetNumberOfDraftPosts() (int64, error) {
+	var count int64
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		Where(sgtmpb.Post{
+			Kind:       sgtmpb.Post_TrackKind,
+			Visibility: sgtmpb.Visibility_Draft,
