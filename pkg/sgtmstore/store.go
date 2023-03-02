@@ -217,4 +217,13 @@ func (s *store) GetLastActivities(moulID int64) ([]*sgtmpb.Post, error) {
 		Preload("TargetPost").
 		Preload("TargetUser").
 		Order("created_at desc").
-		Where("NOT (author_id == ? AND kind IN (?))", moulID, []s
+		Where("NOT (author_id == ? AND kind IN (?))", moulID, []sgtmpb.Post_Kind{
+			sgtmpb.Post_ViewHomeKind,
+			sgtmpb.Post_ViewOpenKind,
+		}). // filter admin recurring actions
+		// Where("author_id != 0"). // filter anonymous
+		Where("kind NOT IN (?)", []sgtmpb.Post_Kind{
+			sgtmpb.Post_LinkDiscordAccountKind,
+			// sgtmpb.Post_LoginKind,
+		}).
+		Limit(42
