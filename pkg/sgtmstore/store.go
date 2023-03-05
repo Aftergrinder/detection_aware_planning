@@ -286,4 +286,17 @@ func (s *store) GetTotalDuration() (int64, error) {
 	var totalDuration int64
 	err := s.db.
 		Model(&sgtmpb.Post{}).
-		Select("sum(duration) 
+		Select("sum(duration) as total_duration").
+		Where(sgtmpb.Post{
+			Kind: sgtmpb.Post_TrackKind,
+			//Visibility: sgtmpb.Visibility_Public,
+		}).
+		First(&totalDuration).
+		Error
+	if err != nil {
+		return 0, err
+	}
+	return totalDuration, nil
+}
+
+func (s *store) GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, erro
