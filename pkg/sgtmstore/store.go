@@ -242,3 +242,25 @@ func (s *store) GetNumberOfDraftPosts() (int64, error) {
 		Where(sgtmpb.Post{
 			Kind:       sgtmpb.Post_TrackKind,
 			Visibility: sgtmpb.Visibility_Draft,
+		}).
+		Count(&count).
+		Error
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
+func (s *store) GetNumberOfUsers() (int64, error) {
+	var count int64
+	err := s.db.
+		Model(&sgtmpb.User{}).
+		Count(&count).
+		Error
+	if err != nil {
+		return 0, err
+	}
+	return count, nil
+}
+
+func (s *sto
