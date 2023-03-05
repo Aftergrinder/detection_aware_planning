@@ -272,4 +272,18 @@ func (s *store) GetNumberOfPostsByKind() ([]*sgtmpb.PostByKind, error) {
 	err := s.db.
 		Model(&sgtmpb.Post{}).
 		// Where(sgtmpb.Post{Visibility: sgtmpb.Visibility_Public}).
-		
+		Select(`kind, count(*) as quantity`).
+		Group("kind").
+		Find(&postsByKind).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return postsByKind, nil
+}
+
+func (s *store) GetTotalDuration() (int64, error) {
+	var totalDuration int64
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		Select("sum(duration) 
