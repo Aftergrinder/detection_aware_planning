@@ -263,4 +263,13 @@ func (s *store) GetNumberOfUsers() (int64, error) {
 	return count, nil
 }
 
-func (s *sto
+func (s *store) CreatePost(post *sgtmpb.Post) error {
+	return s.db.Omit(clause.Associations).Create(&post).Error
+}
+
+func (s *store) GetNumberOfPostsByKind() ([]*sgtmpb.PostByKind, error) {
+	var postsByKind []*sgtmpb.PostByKind
+	err := s.db.
+		Model(&sgtmpb.Post{}).
+		// Where(sgtmpb.Post{Visibility: sgtmpb.Visibility_Public}).
+		
