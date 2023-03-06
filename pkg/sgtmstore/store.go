@@ -299,4 +299,13 @@ func (s *store) GetTotalDuration() (int64, error) {
 	return totalDuration, nil
 }
 
-func (s *store) GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, erro
+func (s *store) GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, error) {
+	query := s.db.
+		Preload("Author").
+		Preload("RelationshipsAsSource").
+		Preload("RelationshipsAsSource.TargetPost").
+		Preload("RelationshipsAsSource.TargetUser").
+		Preload("RelationshipsAsTarget").
+		Preload("RelationshipsAsTarget.SourcePost").
+		Preload("RelationshipsAsTarget.SourceUser")
+	id, 
