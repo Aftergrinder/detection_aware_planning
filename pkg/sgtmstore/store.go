@@ -308,4 +308,13 @@ func (s *store) GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, error) {
 		Preload("RelationshipsAsTarget").
 		Preload("RelationshipsAsTarget.SourcePost").
 		Preload("RelationshipsAsTarget.SourceUser")
-	id, 
+	id, err := strconv.ParseInt(postSlug, 10, 64)
+	if err == nil {
+		query = query.Where(sgtmpb.Post{ID: id, Kind: sgtmpb.Post_TrackKind})
+	} else {
+		query = query.Where(sgtmpb.Post{Slug: postSlug, Kind: sgtmpb.Post_TrackKind})
+	}
+	var post sgtmpb.Post
+	err = query.First(&post).Error
+	if err != nil {
+	
