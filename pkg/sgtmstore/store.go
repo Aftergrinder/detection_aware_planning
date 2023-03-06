@@ -317,4 +317,17 @@ func (s *store) GetPostBySlugOrID(postSlug string) (*sgtmpb.Post, error) {
 	var post sgtmpb.Post
 	err = query.First(&post).Error
 	if err != nil {
+		return nil, err
+	}
+	return &post, nil
+}
+
+func (s *store) GetPostComments(postID int64) ([]*sgtmpb.Post, error) {
+	var postComments []*sgtmpb.Post
+	err := s.db.
+		Where(sgtmpb.Post{
+			Kind:         sgtmpb.Post_CommentKind,
+			TargetPostID: postID,
+			Visibility:   sgtmpb.Visibility_Public,
+		}).
 	
