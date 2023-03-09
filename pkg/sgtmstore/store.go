@@ -344,4 +344,17 @@ func (s *store) GetUserBySlug(slug string) (*sgtmpb.User, error) {
 	err := s.db.
 		Where("LOWER(slug) = ?", slug).
 		First(&user).
-		Er
+		Error
+	if err != nil {
+		return nil, nil
+	}
+	return &user, nil
+}
+
+func (s *store) GetCalendarHeatMap(authorID int64) ([]int64, error) {
+	var timestamps []int64
+	err := s.db.Model(&sgtmpb.Post{}).
+		Select(`sort_date/1000000000 as timestamp`).
+		Where(sgtmpb.Post{
+			AuthorID:   authorID,
+			Kind:       sgtmpb.Post_Trac
