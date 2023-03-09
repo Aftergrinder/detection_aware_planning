@@ -330,4 +330,18 @@ func (s *store) GetPostComments(postID int64) ([]*sgtmpb.Post, error) {
 			TargetPostID: postID,
 			Visibility:   sgtmpb.Visibility_Public,
 		}).
-	
+		Preload("Author").
+		Find(&postComments).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return postComments, nil
+}
+
+func (s *store) GetUserBySlug(slug string) (*sgtmpb.User, error) {
+	var user sgtmpb.User
+	err := s.db.
+		Where("LOWER(slug) = ?", slug).
+		First(&user).
+		Er
