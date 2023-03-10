@@ -379,4 +379,18 @@ func (s *store) UpdateUser(user *sgtmpb.User, updates interface{}) error {
 func (s *store) GetUserRecentPost(userID int64) (*sgtmpb.User, error) {
 	var user sgtmpb.User
 	err := s.db.
-		Preload("RecentPosts", func(db *gor
+		Preload("RecentPosts", func(db *gorm.DB) *gorm.DB {
+			return db.
+				Where("kind IN (?)", []sgtmpb.Post_Kind{sgtmpb.Post_TrackKind}).
+				Order("created_at desc").
+				Limit(3)
+		}).
+		First(&user, userID).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}
+
+func (s *store) GetPostListByUserID(userI
