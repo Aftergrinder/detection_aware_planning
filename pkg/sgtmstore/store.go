@@ -393,4 +393,14 @@ func (s *store) GetUserRecentPost(userID int64) (*sgtmpb.User, error) {
 	return &user, nil
 }
 
-func (s *store) GetPostListByUserID(userI
+func (s *store) GetPostListByUserID(userID int64, limit int) ([]*sgtmpb.Post, int64, error) {
+	var tracks int64
+	var posts []*sgtmpb.Post
+	query := s.db.
+		Model(&sgtmpb.Post{}).
+		Where(sgtmpb.Post{
+			AuthorID:   userID,
+			Kind:       sgtmpb.Post_TrackKind,
+			Visibility: sgtmpb.Visibility_Public,
+		})
+	err :=
