@@ -371,3 +371,12 @@ func (s *store) GetCalendarHeatMap(authorID int64) ([]int64, error) {
 func (s *store) UpdatePost(post *sgtmpb.Post, updates interface{}) error {
 	return s.db.Omit(clause.Associations).Model(post).Updates(updates).Error
 }
+
+func (s *store) UpdateUser(user *sgtmpb.User, updates interface{}) error {
+	return s.db.Omit(clause.Associations).Model(user).Updates(updates).Error
+}
+
+func (s *store) GetUserRecentPost(userID int64) (*sgtmpb.User, error) {
+	var user sgtmpb.User
+	err := s.db.
+		Preload("RecentPosts", func(db *gor
