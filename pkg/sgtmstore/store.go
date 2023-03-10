@@ -357,4 +357,17 @@ func (s *store) GetCalendarHeatMap(authorID int64) ([]int64, error) {
 		Select(`sort_date/1000000000 as timestamp`).
 		Where(sgtmpb.Post{
 			AuthorID:   authorID,
-			Kind:       sgtmpb.Post_Trac
+			Kind:       sgtmpb.Post_TrackKind,
+			Visibility: sgtmpb.Visibility_Public,
+		}).
+		Pluck("timestamp", &timestamps).
+		Error
+	if err != nil {
+		return nil, err
+	}
+	return timestamps, nil
+}
+
+func (s *store) UpdatePost(post *sgtmpb.Post, updates interface{}) error {
+	return s.db.Omit(clause.Associations).Model(post).Updates(updates).Error
+}
