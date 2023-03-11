@@ -403,4 +403,19 @@ func (s *store) GetPostListByUserID(userID int64, limit int) ([]*sgtmpb.Post, in
 			Kind:       sgtmpb.Post_TrackKind,
 			Visibility: sgtmpb.Visibility_Public,
 		})
-	err :=
+	err := query.Count(&tracks).Error
+	if err != nil {
+		return nil, 0, err
+	}
+	if tracks > 0 {
+		err := query.
+			Order("sort_date desc").
+			Limit(limit). // FIXME: pagination
+			Find(&posts).
+			Error
+		if err != nil {
+			return nil, 0, err
+		}
+	}
+	for _, track := range posts {
+		track.ApplyDefaults()
