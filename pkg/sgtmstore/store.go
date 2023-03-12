@@ -419,3 +419,12 @@ func (s *store) GetPostListByUserID(userID int64, limit int) ([]*sgtmpb.Post, in
 	}
 	for _, track := range posts {
 		track.ApplyDefaults()
+	}
+	return posts, tracks, nil
+}
+
+var featRegex = regexp.MustCompile(`(?im)(feat.|feat|featuring|features)\s*[:= ]\s*@([^\s,]+)\s*`)
+
+func (s *store) CheckAndUpdatePost(post *sgtmpb.Post) error {
+	return s.db.Omit(clause.Associations).Transaction(func(tx *gorm.DB) error {
+		// FIXME: avoid 
