@@ -445,4 +445,14 @@ func (s *store) CheckAndUpdatePost(post *sgtmpb.Post) error {
 				continue
 			}
 
-			if err := tx.Model(&post).Association("RelationshipsAsSource").Append(&sgt
+			if err := tx.Model(&post).Association("RelationshipsAsSource").Append(&sgtmpb.Relationship{
+				SourcePostID: post.ID,
+				TargetUserID: user.ID,
+				Kind:         sgtmpb.Relationship_FeaturingUserKind,
+			}); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+}
