@@ -427,4 +427,11 @@ var featRegex = regexp.MustCompile(`(?im)(feat.|feat|featuring|features)\s*[:= ]
 
 func (s *store) CheckAndUpdatePost(post *sgtmpb.Post) error {
 	return s.db.Omit(clause.Associations).Transaction(func(tx *gorm.DB) error {
-		// FIXME: avoid 
+		// FIXME: avoid delete/recreate associations if they didn't changed
+
+		body := post.SafeTitle() + "\n\n" + post.SafeDescription()
+
+		if err := tx.Model(&post).Association("RelationshipsAsSource").Clear(); err != nil {
+			return err
+		}
+		if err := tx.Model(&post).Association("RelationshipsAsTarget
