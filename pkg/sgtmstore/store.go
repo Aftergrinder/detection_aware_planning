@@ -434,4 +434,15 @@ func (s *store) CheckAndUpdatePost(post *sgtmpb.Post) error {
 		if err := tx.Model(&post).Association("RelationshipsAsSource").Clear(); err != nil {
 			return err
 		}
-		if err := tx.Model(&post).Association("RelationshipsAsTarget
+		if err := tx.Model(&post).Association("RelationshipsAsTarget").Clear(); err != nil {
+			return err
+		}
+
+		for _, match := range featRegex.FindAllStringSubmatch(body, -1) {
+			target := strings.ToLower(strings.TrimSpace(match[len(match)-1]))
+			user, err := s.GetUserBySlug(target)
+			if err != nil {
+				continue
+			}
+
+			if err := tx.Model(&post).Association("RelationshipsAsSource").Append(&sgt
