@@ -5,4 +5,5 @@
             <square150x150logo src="/_assets/favicon/mstile-150x150.png"/>
             <TileColor>#ffffff</TileColor>
         </tile>
-    </msappl
+    </msapplication>
+</browserconfig>
