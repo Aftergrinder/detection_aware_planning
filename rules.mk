@@ -337,3 +337,26 @@ ifdef FMT_STEPS
 .PHONY: fmt
 fmt: $(PRE_FMT_STEPS) $(FMT_STEPS)
 endif
+
+ifdef GENERATE_STEPS
+.PHONY: generate
+generate: $(PRE_GENERATE_STEPS) $(GENERATE_STEPS)
+endif
+
+.PHONY: help
+help::
+	@echo "General commands:"
+	@[ "$(BUILD_STEPS)" != "" ]     && echo "  build"     || true
+	@[ "$(BUMPDEPS_STEPS)" != "" ]  && echo "  bumpdeps"  || true
+	@[ "$(FMT_STEPS)" != "" ]       && echo "  fmt"       || true
+	@[ "$(GENERATE_STEPS)" != "" ]  && echo "  generate"  || true
+	@[ "$(INSTALL_STEPS)" != "" ]   && echo "  install"   || true
+	@[ "$(LINT_STEPS)" != "" ]      && echo "  lint"      || true
+	@[ "$(RELEASE_STEPS)" != "" ]   && echo "  release"   || true
+	@[ "$(TEST_STEPS)" != "" ]      && echo "  test"      || true
+	@[ "$(TIDY_STEPS)" != "" ]      && echo "  tidy"      || true
+	@[ "$(UNITTEST_STEPS)" != "" ]  && echo "  unittest"  || true
+	@[ "$(VERIFY_STEPS)" != "" ]    && echo "  verify"    || true
+	@# FIXME: list other commands
+
+print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
