@@ -41,7 +41,6 @@ dmitri.shuralyov.com/service/change v0.0.0-20181023043359-a85b471d5412/go.mod h1
 dmitri.shuralyov.com/state v0.0.0-20180228185332-28bcc343414c/go.mod h1:0PRwlb0D6DFvNNtx+9ybjezNCa8XF0xaYcETyp6rHWU=
 git.apache.org/thrift.git v0.0.0-20180902110319-2566ecd5d999/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
 github.com/AndreasBriese/bbloom v0.0.0-20190306092124-e2d15f34fcf9/go.mod h1:bOvUY6CB00SOBii9/FifXqc0awNKxLFCL/+pkDPuyl8=
-github.com/Bearer/bearer-go v1.1.0/go.mod h1:rtEWryqHRa+Xxd40+ytYqn7LOP35oFMQ5dCFvkreIGI=
 github.com/Bearer/bearer-go v1.2.1 h1:BFrhoEGMpA1IwiZuXDRtXq8kitgmPSMI1fh+Tt3iYPs=
 github.com/Bearer/bearer-go v1.2.1/go.mod h1:rtEWryqHRa+Xxd40+ytYqn7LOP35oFMQ5dCFvkreIGI=
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
@@ -1043,7 +1042,7 @@ rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 sourcegraph.com/sourcegraph/go-diff v0.5.0/go.mod h1:kuch7UrkMzY0X+p9CRK03kfuPQ2zzQcaEFbx8wA8rck=
 sourcegraph.com/sqs/pbtypes v0.0.0-20180604144634-d3ebe8f20ae4/go.mod h1:ketZ/q3QxT9HOBeFhu6RdvsftgpsbFHBF5Cas6cDKZ0=
-ultre.me/calcbiz v1.0.0 h1:V8sccZh4Rsit5oggeOfkvdYnLbC2/aZIR4N7FLf+Jq8=
-ultre.me/calcbiz v1.0.0/go.mod h1:R77uTOBNiYi1rPlTX3sUI9sl+4cqXEkFhpDECB2XqPQ=
+ultre.me/calcbiz v1.1.0 h1:usRdi/LxKqpmVKJ6tkq/k37mRvDYesQLjuCo8maK7cM=
+ultre.me/calcbiz v1.1.0/go.mod h1:iZO75I2PThi7jWF+fNkQzo5ScmDlelCbOamOparsGqA=
 ultre.me/kryptos v0.0.0-20181023194748-240fe1a16033/go.mod h1:NueMpFJdxVrRfBPrlVYEfjJhNj6ozlBz1RXYRhsWUak=
 ultre.me/recettator v0.4.1-0.20190210231503-241df3a046a3/go.mod h1:N52M6NqHXK4BWbvDL4ue2cuN3yvn1VYP5adytNtjTWQ=
