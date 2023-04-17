@@ -1,4 +1,3 @@
-
 module moul.io/sgtm
 
 go 1.14
@@ -67,5 +66,5 @@ require (
 	moul.io/u v1.22.0
 	moul.io/zapconfig v1.3.0
 	moul.io/zapgorm2 v1.0.3
-	ultre.me/calcbiz v1.0.0
+	ultre.me/calcbiz v1.1.0
 )
