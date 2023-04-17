@@ -1,4 +1,3 @@
-
 module moul.io/sgtm
 
 go 1.14
@@ -7,7 +6,7 @@ require (
 	github.com/Bearer/bearer-go v1.2.1
 	github.com/Masterminds/sprig/v3 v3.2.2
 	github.com/alta/protopatch v0.3.4
-	github.com/bwmarrin/discordgo v0.23.2
+	github.com/bwmarrin/discordgo v0.27.1
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/cespare/hutil v0.1.0
 	github.com/clbanning/mxj v1.8.4 // indirect
@@ -23,7 +22,6 @@ require (
 	github.com/gogo/gateway v1.1.0
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.2.0 // indirect
-	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/gosimple/slug v1.9.0
 	github.com/grokify/html-strip-tags-go v0.0.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
@@ -48,7 +46,6 @@ require (
 	github.com/treastech/logger v0.0.0-20180705232552-e381e9ecf2e3
 	github.com/yanatan16/golang-soundcloud v0.0.0-20161013200625-a182dd459b66
 	go.uber.org/zap v1.16.0
-	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
 	golang.org/x/net v0.0.0-20210428140749-89ef3d95e781 // indirect
 	golang.org/x/oauth2 v0.0.0-20210427180440-81ed05c6b58c
 	golang.org/x/sys v0.0.0-20210426230700-d19ff857e887 // indirect
